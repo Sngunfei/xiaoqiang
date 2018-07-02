@@ -1,0 +1,26 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+  <session-factory>
+    <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+    <property name="connection.url">jdbc:mysql://localhost:3306/xq</property>
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="connection.username">root</property>
+    <property name="connection.password">862344</property>
+
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="connection.pool_size">10</property>
+    <!--<property name="cache.provider_class">org.hibernate.cache</property>-->
+
+    <mapping class="com.syf.bean.Administer"/>
+    <mapping class="com.syf.bean.Task"/>
+    <mapping class="com.syf.bean.User"/>
+    <mapping class="com.syf.bean.Place"/>
+    <mapping class="com.syf.bean.Car"/>
+    <mapping class="com.syf.bean.Box"/>
+
+  </session-factory>
+</hibernate-configuration>

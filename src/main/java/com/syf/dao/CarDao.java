@@ -1,0 +1,84 @@
+package com.syf.dao;
+
+import com.syf.bean.Car;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+
+@Repository
+public class CarDao {
+
+    public void addCar(Car car){
+        SessionFactory sf = Utils.getSessionFactory();
+        Session session = sf.getCurrentSession();
+        Transaction transaction = null;
+
+        try{
+            transaction = session.beginTransaction();
+            session.save(car);
+            transaction.commit();
+        }catch (HibernateException e){
+            if(transaction != null)
+                transaction.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+    }
+
+    public List<Car> getAllcar(){
+        SessionFactory sf = Utils.getSessionFactory();
+        Session session = sf.getCurrentSession();
+        Transaction transaction = null;
+        List<Car> cars = null;
+
+        try{
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("from Car");
+            cars = query.list();
+            transaction.commit();
+        }catch (HibernateException e){
+            if(transaction != null)
+                transaction.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+
+        return cars;
+    }
+
+    public Car getAvailableCar(){
+        List<Car> cars = getAllcar();
+        for(Car car: cars){
+            if(car.getStatus().equals("ready"))
+                return car;
+        }
+        return null;
+    }
+
+    public void deleteCar(int carID){
+        SessionFactory sf = Utils.getSessionFactory();
+        Session session = sf.getCurrentSession();
+        Transaction transaction = null;
+
+        try{
+            transaction = session.beginTransaction();
+            Car car = session.load(Car.class, carID);
+            session.delete(car);
+            transaction.commit();
+        }catch (HibernateException e){
+            if(transaction != null)
+                transaction.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+    }
+}
