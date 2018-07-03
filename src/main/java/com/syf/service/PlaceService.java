@@ -27,6 +27,10 @@ public class PlaceService {
         return placeDao.addrToId(place);
     }
 
+    public Place getPlaceById(int id){
+        return placeDao.getPlaceById(id);
+    }
+
     public void save(Place place){
         placeDao.save(place);
     }

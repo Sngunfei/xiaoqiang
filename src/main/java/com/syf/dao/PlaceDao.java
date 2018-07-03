@@ -18,6 +18,27 @@ public class PlaceDao {
         return this.getPlaceByAddr(place) != null;
     }
 
+    public Place getPlaceById(int id){
+        SessionFactory sf = Utils.getSessionFactory();
+        Session session = sf.openSession();
+        Transaction transaction = null;
+        Place place = null;
+
+        try{
+            transaction = session.beginTransaction();
+            place = session.load(Place.class, id);
+            transaction.commit();
+        }catch (HibernateException e){
+            if(transaction != null)
+                transaction.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+
+        return place;
+    }
+
     public Place getPlaceByAddr(String descrip){
         SessionFactory sf = Utils.getSessionFactory();
         Session session = sf.openSession();

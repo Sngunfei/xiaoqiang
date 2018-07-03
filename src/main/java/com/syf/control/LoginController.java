@@ -36,7 +36,8 @@ public class LoginController {
         } else if (!dbAdmin.getPassword().equals(password)) {
             mav.addObject("errorMessage", "密码不正确！");
         } else {
-            dbAdmin.setIp(request.getRemoteAddr());
+            dbAdmin.setIp(request.getRemoteHost());
+            dbAdmin.setPort(request.getRemotePort());
             administerService.updateAdminister(dbAdmin);
             mav.setViewName("main");
         }

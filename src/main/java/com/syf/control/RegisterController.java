@@ -37,7 +37,7 @@ public class RegisterController {
                 admin.setAccount(account);
                 admin.setPassword(password);
                 admin.setIp(request.getRemoteAddr());
-                System.out.println(admin.toString());
+                admin.setPort(request.getRemotePort());
                 administerService.register(admin);
             }
         }catch (Exception e){

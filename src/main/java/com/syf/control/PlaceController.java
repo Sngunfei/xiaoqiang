@@ -2,6 +2,7 @@ package com.syf.control;
 
 import com.syf.bean.Place;
 import com.syf.service.PlaceService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 public class PlaceController {
 
     private PlaceService placeService;
+
+    private static Logger logger = Logger.getLogger(LoginController.class);
 
     @Autowired
     public PlaceController(PlaceService service){
@@ -33,8 +36,13 @@ public class PlaceController {
         place.setLocX(Float.valueOf(request.getParameter("locx")));
         place.setLocY(Float.valueOf(request.getParameter("locy")));
         place.setLocZ(Float.valueOf(request.getParameter("locz")));
-        System.out.println(place.toString());
+        place.setAngX(Float.valueOf(request.getParameter("angx")));
+        place.setAngY(Float.valueOf(request.getParameter("angy")));
+        place.setAngZ(Float.valueOf(request.getParameter("angz")));
+        place.setAngW(Float.valueOf(request.getParameter("angw")));
+        //System.out.println(place.toString());
         placeService.save(place);
+        logger.info("Add new place success!");
         return "main";
     }
 }

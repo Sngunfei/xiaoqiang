@@ -55,11 +55,13 @@ public class TaskController {
         return "newTask";
     }
 
-//    @RequestMapping(value = "/startTask.do", method = RequestMethod.POST)
-//    public String startTask(@RequestParam("taskid") int id){
-//
-//
-//
-//        return "";
-//    }
+    @RequestMapping(value = "/startTask.do", method = RequestMethod.POST)
+    public String startTask(@RequestParam("taskid") int id){
+        try {
+            taskService.startTask(id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "main";
+    }
 }

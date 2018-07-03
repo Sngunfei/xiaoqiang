@@ -7193,3 +7193,232 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'xq.hibernate_s
 2018-07-02 00:14:48.207 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
 2018-07-02 00:14:49.391 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory
 2018-07-02 00:14:49.513 WARN  HqlSqlWalker:1090 - [DEPRECATION] Encountered positional parameter near line 1, column 46 in HQL: [from com.syf.bean.Administer where account = ?].  Positional parameter are considered deprecated; use named parameters or JPA-style positional parameters instead.
+2018-07-03 22:48:16.262 INFO  ContextLoader:304 - Root WebApplicationContext: initialization started
+2018-07-03 22:48:16.374 INFO  XmlWebApplicationContext:583 - Refreshing Root WebApplicationContext: startup date [Tue Jul 03 22:48:16 CST 2018]; root of context hierarchy
+2018-07-03 22:48:16.590 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [applicationContext.xml]
+2018-07-03 22:48:18.310 INFO  ContextLoader:344 - Root WebApplicationContext: initialization completed in 2043 ms
+2018-07-03 22:48:18.432 INFO  DispatcherServlet:489 - FrameworkServlet 'dispatcher': initialization started
+2018-07-03 22:48:18.470 INFO  XmlWebApplicationContext:583 - Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Jul 03 22:48:18 CST 2018]; parent: Root WebApplicationContext
+2018-07-03 22:48:18.473 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [dispatcher-servlet.xml]
+2018-07-03 22:48:20.600 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/login],methods=[GET]}" onto public java.lang.String com.syf.control.LoginController.login()
+2018-07-03 22:48:20.609 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/logout]}" onto public java.lang.String com.syf.control.LoginController.logout()
+2018-07-03 22:48:20.613 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/login.do],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.LoginController.l111(javax.servlet.http.HttpServletRequest,java.lang.String,java.lang.String)
+2018-07-03 22:48:20.620 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index/listTasksOf-{account}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.MainController.listTasksOfUser(java.lang.String)
+2018-07-03 22:48:20.627 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index/deleteTask-{taskID}],methods=[GET]}" onto public java.lang.String com.syf.control.MainController.deleteTask(int)
+2018-07-03 22:48:20.629 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index/addTask],methods=[POST]}" onto public java.lang.String com.syf.control.MainController.addTask(com.syf.bean.Task)
+2018-07-03 22:48:20.630 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.MainController.listAllTasks()
+2018-07-03 22:48:20.636 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/place/addPlace.do],methods=[POST]}" onto public java.lang.String com.syf.control.PlaceController.addPlaceDo(javax.servlet.http.HttpServletRequest)
+2018-07-03 22:48:20.637 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/place/newPlace],methods=[GET]}" onto public java.lang.String com.syf.control.PlaceController.addPlace()
+2018-07-03 22:48:20.639 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/register],methods=[GET]}" onto public java.lang.String com.syf.control.RegisterController.register()
+2018-07-03 22:48:20.640 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/register.do],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.RegisterController.registerDo(javax.servlet.http.HttpServletRequest,java.lang.String,java.lang.String,java.lang.String)
+2018-07-03 22:48:20.647 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/task/addTask.do],methods=[POST || GET]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.TaskController.addTask(java.lang.String,java.lang.String)
+2018-07-03 22:48:20.650 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/task/newTask],methods=[POST || GET]}" onto public java.lang.String com.syf.control.TaskController.newTask()
+2018-07-03 22:48:20.656 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/user/newUser],methods=[GET]}" onto public java.lang.String com.syf.control.UserController.addUser()
+2018-07-03 22:48:20.658 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/user/addUser.do],methods=[POST]}" onto public java.lang.String com.syf.control.UserController.addUserDo(javax.servlet.http.HttpServletRequest)
+2018-07-03 22:48:21.338 INFO  RequestMappingHandlerAdapter:534 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Jul 03 22:48:18 CST 2018]; parent: Root WebApplicationContext
+2018-07-03 22:48:21.445 INFO  RequestMappingHandlerAdapter:534 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Jul 03 22:48:18 CST 2018]; parent: Root WebApplicationContext
+2018-07-03 22:48:21.577 INFO  SimpleUrlHandlerMapping:362 - Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+2018-07-03 22:48:21.669 INFO  DispatcherServlet:508 - FrameworkServlet 'dispatcher': initialization completed in 3227 ms
+2018-07-03 22:48:38.441 INFO  Version:45 - HHH000412: Hibernate Core {5.2.16.Final}
+2018-07-03 22:48:38.452 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2018-07-03 22:48:38.790 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-07-03 22:48:39.117 WARN  pooling:73 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-07-03 22:48:39.126 INFO  pooling:129 - HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/xq]
+2018-07-03 22:48:39.127 INFO  pooling:138 - HHH10001001: Connection properties: {user=root, password=****}
+2018-07-03 22:48:39.128 INFO  pooling:143 - HHH10001003: Autocommit mode: false
+2018-07-03 22:48:39.134 INFO  DriverManagerConnectionProviderImpl:281 - HHH000115: Hibernate connection pool size: 10 (min=1)
+2018-07-03 22:48:39.727 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-07-03 22:48:41.111 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory
+2018-07-03 22:48:41.234 WARN  HqlSqlWalker:1090 - [DEPRECATION] Encountered positional parameter near line 1, column 46 in HQL: [from com.syf.bean.Administer where account = ?].  Positional parameter are considered deprecated; use named parameters or JPA-style positional parameters instead.
+2018-07-03 23:06:25.849 INFO  ContextLoader:304 - Root WebApplicationContext: initialization started
+2018-07-03 23:06:25.971 INFO  XmlWebApplicationContext:583 - Refreshing Root WebApplicationContext: startup date [Tue Jul 03 23:06:25 CST 2018]; root of context hierarchy
+2018-07-03 23:06:26.207 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [applicationContext.xml]
+2018-07-03 23:06:27.220 INFO  ContextLoader:344 - Root WebApplicationContext: initialization completed in 1366 ms
+2018-07-03 23:06:27.275 INFO  DispatcherServlet:489 - FrameworkServlet 'dispatcher': initialization started
+2018-07-03 23:06:27.282 INFO  XmlWebApplicationContext:583 - Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Jul 03 23:06:27 CST 2018]; parent: Root WebApplicationContext
+2018-07-03 23:06:27.284 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [dispatcher-servlet.xml]
+2018-07-03 23:06:27.906 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/login],methods=[GET]}" onto public java.lang.String com.syf.control.LoginController.login()
+2018-07-03 23:06:27.909 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/logout]}" onto public java.lang.String com.syf.control.LoginController.logout()
+2018-07-03 23:06:27.911 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/login.do],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.LoginController.l111(javax.servlet.http.HttpServletRequest,java.lang.String,java.lang.String)
+2018-07-03 23:06:27.914 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index/addTask],methods=[POST]}" onto public java.lang.String com.syf.control.MainController.addTask(com.syf.bean.Task)
+2018-07-03 23:06:27.915 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index/listTasksOf-{account}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.MainController.listTasksOfUser(java.lang.String)
+2018-07-03 23:06:27.918 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index/deleteTask-{taskID}],methods=[GET]}" onto public java.lang.String com.syf.control.MainController.deleteTask(int)
+2018-07-03 23:06:27.920 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.MainController.listAllTasks()
+2018-07-03 23:06:27.924 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/place/addPlace.do],methods=[POST]}" onto public java.lang.String com.syf.control.PlaceController.addPlaceDo(javax.servlet.http.HttpServletRequest)
+2018-07-03 23:06:27.925 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/place/newPlace],methods=[GET]}" onto public java.lang.String com.syf.control.PlaceController.addPlace()
+2018-07-03 23:06:27.927 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/register],methods=[GET]}" onto public java.lang.String com.syf.control.RegisterController.register()
+2018-07-03 23:06:27.929 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/register.do],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.RegisterController.registerDo(javax.servlet.http.HttpServletRequest,java.lang.String,java.lang.String,java.lang.String)
+2018-07-03 23:06:27.934 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/task/addTask.do],methods=[POST || GET]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.TaskController.addTask(java.lang.String,java.lang.String)
+2018-07-03 23:06:27.937 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/task/newTask],methods=[POST || GET]}" onto public java.lang.String com.syf.control.TaskController.newTask()
+2018-07-03 23:06:27.939 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/user/newUser],methods=[GET]}" onto public java.lang.String com.syf.control.UserController.addUser()
+2018-07-03 23:06:27.940 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/user/addUser.do],methods=[POST]}" onto public java.lang.String com.syf.control.UserController.addUserDo(javax.servlet.http.HttpServletRequest)
+2018-07-03 23:06:28.785 INFO  RequestMappingHandlerAdapter:534 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Jul 03 23:06:27 CST 2018]; parent: Root WebApplicationContext
+2018-07-03 23:06:28.959 INFO  RequestMappingHandlerAdapter:534 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Jul 03 23:06:27 CST 2018]; parent: Root WebApplicationContext
+2018-07-03 23:06:29.102 INFO  SimpleUrlHandlerMapping:362 - Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+2018-07-03 23:06:29.266 INFO  DispatcherServlet:508 - FrameworkServlet 'dispatcher': initialization completed in 1990 ms
+2018-07-03 23:06:59.855 INFO  Version:45 - HHH000412: Hibernate Core {5.2.16.Final}
+2018-07-03 23:06:59.872 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2018-07-03 23:07:00.388 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-07-03 23:07:00.678 WARN  pooling:73 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-07-03 23:07:00.688 INFO  pooling:129 - HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/xq]
+2018-07-03 23:07:00.691 INFO  pooling:138 - HHH10001001: Connection properties: {user=root, password=****}
+2018-07-03 23:07:00.692 INFO  pooling:143 - HHH10001003: Autocommit mode: false
+2018-07-03 23:07:00.699 INFO  DriverManagerConnectionProviderImpl:281 - HHH000115: Hibernate connection pool size: 10 (min=1)
+2018-07-03 23:07:01.175 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-07-03 23:07:02.339 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory
+2018-07-03 23:07:02.464 WARN  HqlSqlWalker:1090 - [DEPRECATION] Encountered positional parameter near line 1, column 46 in HQL: [from com.syf.bean.Administer where account = ?].  Positional parameter are considered deprecated; use named parameters or JPA-style positional parameters instead.
+2018-07-03 23:08:20.210 INFO  ContextLoader:304 - Root WebApplicationContext: initialization started
+2018-07-03 23:08:20.310 INFO  XmlWebApplicationContext:583 - Refreshing Root WebApplicationContext: startup date [Tue Jul 03 23:08:20 CST 2018]; root of context hierarchy
+2018-07-03 23:08:21.169 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [applicationContext.xml]
+2018-07-03 23:08:22.295 INFO  ContextLoader:344 - Root WebApplicationContext: initialization completed in 2080 ms
+2018-07-03 23:08:22.346 INFO  DispatcherServlet:489 - FrameworkServlet 'dispatcher': initialization started
+2018-07-03 23:08:22.352 INFO  XmlWebApplicationContext:583 - Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Jul 03 23:08:22 CST 2018]; parent: Root WebApplicationContext
+2018-07-03 23:08:22.353 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [dispatcher-servlet.xml]
+2018-07-03 23:08:22.861 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/logout]}" onto public java.lang.String com.syf.control.LoginController.logout()
+2018-07-03 23:08:22.869 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/login],methods=[GET]}" onto public java.lang.String com.syf.control.LoginController.login()
+2018-07-03 23:08:22.871 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/login.do],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.LoginController.l111(javax.servlet.http.HttpServletRequest,java.lang.String,java.lang.String)
+2018-07-03 23:08:22.874 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index/listTasksOf-{account}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.MainController.listTasksOfUser(java.lang.String)
+2018-07-03 23:08:22.875 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.MainController.listAllTasks()
+2018-07-03 23:08:22.877 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index/addTask],methods=[POST]}" onto public java.lang.String com.syf.control.MainController.addTask(com.syf.bean.Task)
+2018-07-03 23:08:22.878 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index/deleteTask-{taskID}],methods=[GET]}" onto public java.lang.String com.syf.control.MainController.deleteTask(int)
+2018-07-03 23:08:22.883 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/place/addPlace.do],methods=[POST]}" onto public java.lang.String com.syf.control.PlaceController.addPlaceDo(javax.servlet.http.HttpServletRequest)
+2018-07-03 23:08:22.884 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/place/newPlace],methods=[GET]}" onto public java.lang.String com.syf.control.PlaceController.addPlace()
+2018-07-03 23:08:22.885 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/register],methods=[GET]}" onto public java.lang.String com.syf.control.RegisterController.register()
+2018-07-03 23:08:22.886 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/register.do],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.RegisterController.registerDo(javax.servlet.http.HttpServletRequest,java.lang.String,java.lang.String,java.lang.String)
+2018-07-03 23:08:22.890 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/task/newTask],methods=[POST || GET]}" onto public java.lang.String com.syf.control.TaskController.newTask()
+2018-07-03 23:08:22.891 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/task/addTask.do],methods=[POST || GET]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.TaskController.addTask(java.lang.String,java.lang.String)
+2018-07-03 23:08:22.895 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/user/addUser.do],methods=[POST]}" onto public java.lang.String com.syf.control.UserController.addUserDo(javax.servlet.http.HttpServletRequest)
+2018-07-03 23:08:22.896 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/user/newUser],methods=[GET]}" onto public java.lang.String com.syf.control.UserController.addUser()
+2018-07-03 23:08:23.275 INFO  RequestMappingHandlerAdapter:534 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Jul 03 23:08:22 CST 2018]; parent: Root WebApplicationContext
+2018-07-03 23:08:23.373 INFO  RequestMappingHandlerAdapter:534 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Jul 03 23:08:22 CST 2018]; parent: Root WebApplicationContext
+2018-07-03 23:08:23.459 INFO  SimpleUrlHandlerMapping:362 - Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+2018-07-03 23:08:23.553 INFO  DispatcherServlet:508 - FrameworkServlet 'dispatcher': initialization completed in 1206 ms
+2018-07-03 23:08:27.110 INFO  Version:45 - HHH000412: Hibernate Core {5.2.16.Final}
+2018-07-03 23:08:27.116 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2018-07-03 23:08:27.528 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-07-03 23:08:27.740 WARN  pooling:73 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-07-03 23:08:27.755 INFO  pooling:129 - HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/xq]
+2018-07-03 23:08:27.757 INFO  pooling:138 - HHH10001001: Connection properties: {user=root, password=****}
+2018-07-03 23:08:27.758 INFO  pooling:143 - HHH10001003: Autocommit mode: false
+2018-07-03 23:08:27.781 INFO  DriverManagerConnectionProviderImpl:281 - HHH000115: Hibernate connection pool size: 10 (min=1)
+2018-07-03 23:08:28.312 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-07-03 23:08:29.636 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory
+2018-07-03 23:08:29.782 WARN  HqlSqlWalker:1090 - [DEPRECATION] Encountered positional parameter near line 1, column 46 in HQL: [from com.syf.bean.Administer where account = ?].  Positional parameter are considered deprecated; use named parameters or JPA-style positional parameters instead.
+2018-07-03 23:10:36.915 INFO  ContextLoader:304 - Root WebApplicationContext: initialization started
+2018-07-03 23:10:37.30 INFO  XmlWebApplicationContext:583 - Refreshing Root WebApplicationContext: startup date [Tue Jul 03 23:10:37 CST 2018]; root of context hierarchy
+2018-07-03 23:10:37.299 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [applicationContext.xml]
+2018-07-03 23:10:38.364 INFO  ContextLoader:344 - Root WebApplicationContext: initialization completed in 1445 ms
+2018-07-03 23:10:38.420 INFO  DispatcherServlet:489 - FrameworkServlet 'dispatcher': initialization started
+2018-07-03 23:10:38.429 INFO  XmlWebApplicationContext:583 - Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Jul 03 23:10:38 CST 2018]; parent: Root WebApplicationContext
+2018-07-03 23:10:38.431 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [dispatcher-servlet.xml]
+2018-07-03 23:10:39.11 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/login],methods=[GET]}" onto public java.lang.String com.syf.control.LoginController.login()
+2018-07-03 23:10:39.13 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/logout]}" onto public java.lang.String com.syf.control.LoginController.logout()
+2018-07-03 23:10:39.15 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/login.do],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.LoginController.l111(javax.servlet.http.HttpServletRequest,java.lang.String,java.lang.String)
+2018-07-03 23:10:39.18 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.MainController.listAllTasks()
+2018-07-03 23:10:39.19 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index/addTask],methods=[POST]}" onto public java.lang.String com.syf.control.MainController.addTask(com.syf.bean.Task)
+2018-07-03 23:10:39.21 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index/listTasksOf-{account}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.MainController.listTasksOfUser(java.lang.String)
+2018-07-03 23:10:39.23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index/deleteTask-{taskID}],methods=[GET]}" onto public java.lang.String com.syf.control.MainController.deleteTask(int)
+2018-07-03 23:10:39.28 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/place/newPlace],methods=[GET]}" onto public java.lang.String com.syf.control.PlaceController.addPlace()
+2018-07-03 23:10:39.32 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/place/addPlace.do],methods=[POST]}" onto public java.lang.String com.syf.control.PlaceController.addPlaceDo(javax.servlet.http.HttpServletRequest)
+2018-07-03 23:10:39.33 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/register],methods=[GET]}" onto public java.lang.String com.syf.control.RegisterController.register()
+2018-07-03 23:10:39.34 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/register.do],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.RegisterController.registerDo(javax.servlet.http.HttpServletRequest,java.lang.String,java.lang.String,java.lang.String)
+2018-07-03 23:10:39.38 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/task/addTask.do],methods=[POST || GET]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.TaskController.addTask(java.lang.String,java.lang.String)
+2018-07-03 23:10:39.39 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/task/newTask],methods=[POST || GET]}" onto public java.lang.String com.syf.control.TaskController.newTask()
+2018-07-03 23:10:39.42 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/user/newUser],methods=[GET]}" onto public java.lang.String com.syf.control.UserController.addUser()
+2018-07-03 23:10:39.44 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/user/addUser.do],methods=[POST]}" onto public java.lang.String com.syf.control.UserController.addUserDo(javax.servlet.http.HttpServletRequest)
+2018-07-03 23:10:39.485 INFO  RequestMappingHandlerAdapter:534 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Jul 03 23:10:38 CST 2018]; parent: Root WebApplicationContext
+2018-07-03 23:10:39.587 INFO  RequestMappingHandlerAdapter:534 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Jul 03 23:10:38 CST 2018]; parent: Root WebApplicationContext
+2018-07-03 23:10:39.713 INFO  SimpleUrlHandlerMapping:362 - Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+2018-07-03 23:10:39.811 INFO  DispatcherServlet:508 - FrameworkServlet 'dispatcher': initialization completed in 1389 ms
+2018-07-03 23:10:44.181 INFO  Version:45 - HHH000412: Hibernate Core {5.2.16.Final}
+2018-07-03 23:10:44.186 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2018-07-03 23:10:44.608 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-07-03 23:10:44.792 WARN  pooling:73 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-07-03 23:10:44.804 INFO  pooling:129 - HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/xq]
+2018-07-03 23:10:44.805 INFO  pooling:138 - HHH10001001: Connection properties: {user=root, password=****}
+2018-07-03 23:10:44.806 INFO  pooling:143 - HHH10001003: Autocommit mode: false
+2018-07-03 23:10:44.814 INFO  DriverManagerConnectionProviderImpl:281 - HHH000115: Hibernate connection pool size: 10 (min=1)
+2018-07-03 23:10:45.253 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-07-03 23:10:46.606 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory
+2018-07-03 23:10:46.719 WARN  HqlSqlWalker:1090 - [DEPRECATION] Encountered positional parameter near line 1, column 46 in HQL: [from com.syf.bean.Administer where account = ?].  Positional parameter are considered deprecated; use named parameters or JPA-style positional parameters instead.
+2018-07-03 23:57:10.236 INFO  ContextLoader:304 - Root WebApplicationContext: initialization started
+2018-07-03 23:57:10.356 INFO  XmlWebApplicationContext:583 - Refreshing Root WebApplicationContext: startup date [Tue Jul 03 23:57:10 CST 2018]; root of context hierarchy
+2018-07-03 23:57:10.545 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [applicationContext.xml]
+2018-07-03 23:57:11.418 INFO  ContextLoader:344 - Root WebApplicationContext: initialization completed in 1177 ms
+2018-07-03 23:57:11.470 INFO  DispatcherServlet:489 - FrameworkServlet 'dispatcher': initialization started
+2018-07-03 23:57:11.477 INFO  XmlWebApplicationContext:583 - Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Jul 03 23:57:11 CST 2018]; parent: Root WebApplicationContext
+2018-07-03 23:57:11.478 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [dispatcher-servlet.xml]
+2018-07-03 23:57:12.52 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/addCar.do],methods=[POST]}" onto public java.lang.String com.syf.control.CarController.addCarDo(java.lang.String,java.lang.String)
+2018-07-03 23:57:12.55 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/newCar],methods=[GET]}" onto public java.lang.String com.syf.control.CarController.newCar()
+2018-07-03 23:57:12.58 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/login],methods=[GET]}" onto public java.lang.String com.syf.control.LoginController.login()
+2018-07-03 23:57:12.59 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/logout]}" onto public java.lang.String com.syf.control.LoginController.logout()
+2018-07-03 23:57:12.60 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/login.do],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.LoginController.l111(javax.servlet.http.HttpServletRequest,java.lang.String,java.lang.String)
+2018-07-03 23:57:12.62 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index/addTask],methods=[POST]}" onto public java.lang.String com.syf.control.MainController.addTask(com.syf.bean.Task)
+2018-07-03 23:57:12.64 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index/listTasksOf-{account}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.MainController.listTasksOfUser(java.lang.String)
+2018-07-03 23:57:12.66 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index/deleteTask-{taskID}],methods=[GET]}" onto public java.lang.String com.syf.control.MainController.deleteTask(int)
+2018-07-03 23:57:12.68 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.MainController.listAllTasks()
+2018-07-03 23:57:12.72 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/place/newPlace],methods=[GET]}" onto public java.lang.String com.syf.control.PlaceController.addPlace()
+2018-07-03 23:57:12.73 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/place/addPlace.do],methods=[POST]}" onto public java.lang.String com.syf.control.PlaceController.addPlaceDo(javax.servlet.http.HttpServletRequest)
+2018-07-03 23:57:12.75 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/register],methods=[GET]}" onto public java.lang.String com.syf.control.RegisterController.register()
+2018-07-03 23:57:12.76 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/register.do],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.RegisterController.registerDo(javax.servlet.http.HttpServletRequest,java.lang.String,java.lang.String,java.lang.String)
+2018-07-03 23:57:12.85 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/task/addTask.do],methods=[POST || GET]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.TaskController.addTask(java.lang.String,java.lang.String)
+2018-07-03 23:57:12.86 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/task/startTask.do],methods=[POST || GET]}" onto public java.lang.String com.syf.control.TaskController.startTask(int)
+2018-07-03 23:57:12.87 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/task/newTask],methods=[POST || GET]}" onto public java.lang.String com.syf.control.TaskController.newTask()
+2018-07-03 23:57:12.89 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/user/newUser],methods=[GET]}" onto public java.lang.String com.syf.control.UserController.addUser()
+2018-07-03 23:57:12.90 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/user/addUser.do],methods=[POST]}" onto public java.lang.String com.syf.control.UserController.addUserDo(javax.servlet.http.HttpServletRequest)
+2018-07-03 23:57:12.708 INFO  RequestMappingHandlerAdapter:534 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Jul 03 23:57:11 CST 2018]; parent: Root WebApplicationContext
+2018-07-03 23:57:12.816 INFO  RequestMappingHandlerAdapter:534 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Jul 03 23:57:11 CST 2018]; parent: Root WebApplicationContext
+2018-07-03 23:57:12.900 INFO  BeanNameUrlHandlerMapping:362 - Mapped URL path [/car] onto handler '/car'
+2018-07-03 23:57:12.937 INFO  SimpleUrlHandlerMapping:362 - Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+2018-07-03 23:57:13.49 INFO  DispatcherServlet:508 - FrameworkServlet 'dispatcher': initialization completed in 1579 ms
+2018-07-03 23:57:20.603 INFO  Version:45 - HHH000412: Hibernate Core {5.2.16.Final}
+2018-07-03 23:57:20.607 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2018-07-03 23:57:20.887 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-07-03 23:57:21.46 WARN  pooling:73 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-07-03 23:57:21.53 INFO  pooling:129 - HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/xq]
+2018-07-03 23:57:21.54 INFO  pooling:138 - HHH10001001: Connection properties: {user=root, password=****}
+2018-07-03 23:57:21.54 INFO  pooling:143 - HHH10001003: Autocommit mode: false
+2018-07-03 23:57:21.59 INFO  DriverManagerConnectionProviderImpl:281 - HHH000115: Hibernate connection pool size: 10 (min=1)
+2018-07-03 23:57:21.395 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-07-03 23:57:22.432 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory
+2018-07-03 23:57:22.532 WARN  HqlSqlWalker:1090 - [DEPRECATION] Encountered positional parameter near line 1, column 46 in HQL: [from com.syf.bean.Administer where account = ?].  Positional parameter are considered deprecated; use named parameters or JPA-style positional parameters instead.
+2018-07-03 23:58:37.653 INFO  ContextLoader:304 - Root WebApplicationContext: initialization started
+2018-07-03 23:58:37.841 INFO  XmlWebApplicationContext:583 - Refreshing Root WebApplicationContext: startup date [Tue Jul 03 23:58:37 CST 2018]; root of context hierarchy
+2018-07-03 23:58:38.135 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [applicationContext.xml]
+2018-07-03 23:58:39.436 INFO  ContextLoader:344 - Root WebApplicationContext: initialization completed in 1778 ms
+2018-07-03 23:58:39.488 INFO  DispatcherServlet:489 - FrameworkServlet 'dispatcher': initialization started
+2018-07-03 23:58:39.496 INFO  XmlWebApplicationContext:583 - Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Jul 03 23:58:39 CST 2018]; parent: Root WebApplicationContext
+2018-07-03 23:58:39.497 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [dispatcher-servlet.xml]
+2018-07-03 23:58:40.262 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/car/addCar.do],methods=[POST]}" onto public java.lang.String com.syf.control.CarController.addCarDo(java.lang.String,java.lang.String)
+2018-07-03 23:58:40.264 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/car/newCar],methods=[GET]}" onto public java.lang.String com.syf.control.CarController.newCar()
+2018-07-03 23:58:40.266 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/login],methods=[GET]}" onto public java.lang.String com.syf.control.LoginController.login()
+2018-07-03 23:58:40.267 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/logout]}" onto public java.lang.String com.syf.control.LoginController.logout()
+2018-07-03 23:58:40.269 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/login.do],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.LoginController.l111(javax.servlet.http.HttpServletRequest,java.lang.String,java.lang.String)
+2018-07-03 23:58:40.271 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index/listTasksOf-{account}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.MainController.listTasksOfUser(java.lang.String)
+2018-07-03 23:58:40.272 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.MainController.listAllTasks()
+2018-07-03 23:58:40.273 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index/deleteTask-{taskID}],methods=[GET]}" onto public java.lang.String com.syf.control.MainController.deleteTask(int)
+2018-07-03 23:58:40.274 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/index/addTask],methods=[POST]}" onto public java.lang.String com.syf.control.MainController.addTask(com.syf.bean.Task)
+2018-07-03 23:58:40.277 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/place/newPlace],methods=[GET]}" onto public java.lang.String com.syf.control.PlaceController.addPlace()
+2018-07-03 23:58:40.278 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/place/addPlace.do],methods=[POST]}" onto public java.lang.String com.syf.control.PlaceController.addPlaceDo(javax.servlet.http.HttpServletRequest)
+2018-07-03 23:58:40.280 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/register],methods=[GET]}" onto public java.lang.String com.syf.control.RegisterController.register()
+2018-07-03 23:58:40.282 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/register.do],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.RegisterController.registerDo(javax.servlet.http.HttpServletRequest,java.lang.String,java.lang.String,java.lang.String)
+2018-07-03 23:58:40.288 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/task/addTask.do],methods=[POST || GET]}" onto public org.springframework.web.servlet.ModelAndView com.syf.control.TaskController.addTask(java.lang.String,java.lang.String)
+2018-07-03 23:58:40.289 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/task/startTask.do],methods=[POST || GET]}" onto public java.lang.String com.syf.control.TaskController.startTask(int)
+2018-07-03 23:58:40.290 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/task/newTask],methods=[POST || GET]}" onto public java.lang.String com.syf.control.TaskController.newTask()
+2018-07-03 23:58:40.293 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/user/addUser.do],methods=[POST]}" onto public java.lang.String com.syf.control.UserController.addUserDo(javax.servlet.http.HttpServletRequest)
+2018-07-03 23:58:40.294 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/user/newUser],methods=[GET]}" onto public java.lang.String com.syf.control.UserController.addUser()
+2018-07-03 23:58:40.747 INFO  RequestMappingHandlerAdapter:534 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Jul 03 23:58:39 CST 2018]; parent: Root WebApplicationContext
+2018-07-03 23:58:40.851 INFO  RequestMappingHandlerAdapter:534 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Jul 03 23:58:39 CST 2018]; parent: Root WebApplicationContext
+2018-07-03 23:58:40.967 INFO  SimpleUrlHandlerMapping:362 - Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+2018-07-03 23:58:41.63 INFO  DispatcherServlet:508 - FrameworkServlet 'dispatcher': initialization completed in 1574 ms
+2018-07-03 23:58:49.375 INFO  Version:45 - HHH000412: Hibernate Core {5.2.16.Final}
+2018-07-03 23:58:49.381 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2018-07-03 23:58:49.690 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-07-03 23:58:49.861 WARN  pooling:73 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-07-03 23:58:49.871 INFO  pooling:129 - HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/xq]
+2018-07-03 23:58:49.873 INFO  pooling:138 - HHH10001001: Connection properties: {user=root, password=****}
+2018-07-03 23:58:49.873 INFO  pooling:143 - HHH10001003: Autocommit mode: false
+2018-07-03 23:58:49.886 INFO  DriverManagerConnectionProviderImpl:281 - HHH000115: Hibernate connection pool size: 10 (min=1)
+2018-07-03 23:58:50.263 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-07-03 23:58:51.286 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory
+2018-07-03 23:58:51.399 WARN  HqlSqlWalker:1090 - [DEPRECATION] Encountered positional parameter near line 1, column 46 in HQL: [from com.syf.bean.Administer where account = ?].  Positional parameter are considered deprecated; use named parameters or JPA-style positional parameters instead.

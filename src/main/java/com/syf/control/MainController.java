@@ -29,9 +29,6 @@ public class MainController{
         ModelAndView mav = new ModelAndView("main");
         List<Task> tasks = taskService.getAllTask();
         mav.addObject("tasks", tasks);
-        for(Task task:tasks){
-            System.out.println(task.toString());
-        }
         return mav;
     }
 

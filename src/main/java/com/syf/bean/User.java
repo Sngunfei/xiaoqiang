@@ -27,6 +27,9 @@ public class User extends BasePO{
     @Column(name = "ip")
     private String ip;
 
+    @Column(name = "port")
+    private int port;
+
     @Column(name = "email", length = 256)
     private String email;
 
@@ -70,6 +73,14 @@ public class User extends BasePO{
 
     public void setIp(String ip) {
         this.ip = ip;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
     }
 
     public String getEmail() {

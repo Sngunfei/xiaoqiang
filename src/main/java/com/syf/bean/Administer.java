@@ -2,6 +2,8 @@ package com.syf.bean;
 
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+
 import javax.persistence.*;
 
 @Component
@@ -23,12 +25,23 @@ public class Administer extends BasePO {
     @Column(name = "ip")
     private String ip;
 
+    @Column(name = "port")
+    private int port;
+
     public String getIp() {
         return ip;
     }
 
     public void setIp(String ip) {
         this.ip = ip;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
     }
 
     public int getAdminID() {

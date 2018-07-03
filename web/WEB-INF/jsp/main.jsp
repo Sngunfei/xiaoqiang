@@ -33,10 +33,10 @@
                     <li class="pure-menu-item"><a href="#" class="pure-menu-link">地址管理</a></li>
                     <li class="pure-menu-item"><a href="#" class="pure-menu-link">用户管理</a></li>
                     <li class="pure-menu-item"><a href="#" class="pure-menu-link">智能车</a></li>
-                    <li class="pure-menu-heading">管理</li>
-                    <li class="pure-menu-item"><a href="/user/newUser" class="pure-menu-link"><span class="email-label-personal"></span>添加用户(测试用)</a></li>
-                    <li class="pure-menu-item"><a href="/place/newPlace" class="pure-menu-link"><span class="email-label-work"></span>添加地址(测试用)</a></li>
-                    <li class="pure-menu-item"><a href="#" class="pure-menu-link"><span class="email-label-travel"></span>待加</a></li>
+                    <li class="pure-menu-heading">管理(测试用)</li>
+                    <li class="pure-menu-item"><a href="/user/newUser" class="pure-menu-link"><span class="email-label-personal"></span>添加用户</a></li>
+                    <li class="pure-menu-item"><a href="/place/newPlace" class="pure-menu-link"><span class="email-label-work"></span>添加地址</a></li>
+                    <li class="pure-menu-item"><a href="/car/newCar" class="pure-menu-link"><span class="email-label-travel"></span>添加小车</a></li>
                 </ul>
             </div>
         </div>

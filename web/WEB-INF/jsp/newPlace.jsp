@@ -28,17 +28,27 @@
         <div class="login-input-box">
             <input type="text" name="locz" placeholder="z坐标">
         </div>
+        <div class="login-input-box">
+            <input type="text" name="angx" placeholder="x角度">
+        </div>
+        <div class="login-input-box">
+            <input type="text" name="angy" placeholder="y角度">
+        </div>
+        <div class="login-input-box">
+            <input type="text" name="angz" placeholder="z角度">
+        </div>
+        <div class="login-input-box">
+            <input type="text" name="angw" placeholder="w角度">
+        </div>
         <div class="login-button-box">
             <button class="btn btn-lg btn-primary btn-block" type="submit">添加</button>
         </div>
     </form>
-    <!--添加任务出错，用户/目的地不存在-->
+
     <div>
-        <h5>用户须知：***************************************************************</h5>
+        <h5>地址信息用于在启动任务时构造出string格式的命令，发送给当前可用小车</h5>
     </div>
-    <div>
-        <h4>${errorMessage}</h4>
-    </div>
+
 
 </div>
 

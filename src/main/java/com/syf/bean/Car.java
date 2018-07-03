@@ -21,6 +21,9 @@ public class Car extends BasePO{
     @Column(name = "ip")
     private String ip;
 
+    @Column(name = "port")
+    private int port;
+
     public int getCarID() {
         return carID;
     }
@@ -45,4 +48,11 @@ public class Car extends BasePO{
         this.ip = ip;
     }
 
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
+    }
 }
