@@ -7422,3 +7422,5 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'xq.hibernate_s
 2018-07-03 23:58:50.263 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
 2018-07-03 23:58:51.286 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory
 2018-07-03 23:58:51.399 WARN  HqlSqlWalker:1090 - [DEPRECATION] Encountered positional parameter near line 1, column 46 in HQL: [from com.syf.bean.Administer where account = ?].  Positional parameter are considered deprecated; use named parameters or JPA-style positional parameters instead.
+2018-07-04 00:54:49.202 INFO  XmlWebApplicationContext:984 - Closing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Jul 03 23:58:39 CST 2018]; parent: Root WebApplicationContext
+2018-07-04 00:54:49.228 INFO  XmlWebApplicationContext:984 - Closing Root WebApplicationContext: startup date [Tue Jul 03 23:58:37 CST 2018]; root of context hierarchy
