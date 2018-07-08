@@ -32,7 +32,6 @@ public class UserDao {
         }
     }
 
-
     public User getUserByAccount(String account){
         SessionFactory sf = Utils.getSessionFactory();
         Session session = sf.openSession();
@@ -43,8 +42,31 @@ public class UserDao {
             Query query = session.createQuery("from User where account = ?");
             query.setParameter(0, account);
             List<User> users = query.list();
-            for(User tmp : users)
-                user = tmp;
+            if(!users.isEmpty())
+                user = users.get(0);
+            transaction.commit();
+        }catch (HibernateException e){
+            if(transaction != null)
+                transaction.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+        return user;
+    }
+
+    public User getUserById(int userId){
+        SessionFactory sf = Utils.getSessionFactory();
+        Session session = sf.openSession();
+        Transaction transaction = null;
+        User user = null;
+        try{
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("from User where id = ?");
+            query.setParameter(0, userId);
+            List<User> users = query.list();
+            if(!users.isEmpty())
+                user = users.get(0);
             transaction.commit();
         }catch (HibernateException e){
             if(transaction != null)
@@ -97,5 +119,27 @@ public class UserDao {
             session.close();
         }
 
+    }
+
+    public List<User> getAllAccounts(){
+        SessionFactory sf = Utils.getSessionFactory();
+        Session session = sf.openSession();
+        Transaction transaction = null;
+        List<User> users = null;
+
+        try{
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("from User");
+            users = query.list();
+            transaction.commit();
+        }catch (HibernateException e){
+            if(transaction != null)
+                transaction.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+
+        return users;
     }
 }

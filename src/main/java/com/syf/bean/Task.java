@@ -1,6 +1,5 @@
 package com.syf.bean;
 
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -31,8 +30,16 @@ public class Task extends BasePO{
     @Column(name = "finishTime")
     private Date finishTime;
 
+    /*
+        - status
+            0 : ready: 只是存在数据库里，尚未开始
+            1 : delivering : 已经开始，正在进行中
+            2 : done : 已经正常完成
+            3 : err : 由于种种原因导致任务失败
+            .. etc
+     */
     @Column(name = "status", nullable = false)
-    private String status;
+    private int status;
 
     @Column(name = "deliverTime")
     private Date deliverTime;
@@ -41,12 +48,12 @@ public class Task extends BasePO{
         this.startTime = new Date(System.currentTimeMillis());
     }
 
-    public Task(int id, int destination, int userID, String status) {
+    public Task(int id, int destination, int userID) {
         this.id = id;
         this.destination = destination;
         this.userID = userID;
         this.startTime = new Date(System.currentTimeMillis());
-        this.status = status;
+        this.status = 0;
     }
 
     public int getId() {
@@ -97,11 +104,11 @@ public class Task extends BasePO{
         this.finishTime = finishTime;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -112,4 +119,5 @@ public class Task extends BasePO{
     public void setDeliverTime(Date deliverTime) {
         this.deliverTime = deliverTime;
     }
+
 }

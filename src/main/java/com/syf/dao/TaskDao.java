@@ -49,7 +49,7 @@ public class TaskDao {
         SessionFactory sf = Utils.getSessionFactory();
         Session session = sf.getCurrentSession();
         Transaction transaction = null;
-        List<Task> tasks = null;
+        List tasks = null;
 
         try{
             transaction = session.beginTransaction();

@@ -23,6 +23,10 @@ public class PlaceService {
         return placeDao.getPlaceByAddr(place);
     }
 
+    public String getDescripById(int placeId){
+        return placeDao.getPlaceById(placeId).getDescription();
+    }
+
     public int addrToId(String place){
         return placeDao.addrToId(place);
     }

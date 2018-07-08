@@ -18,6 +18,7 @@ import java.net.Inet4Address;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -27,14 +28,52 @@ public class TaskService {
     private TaskDao dao;
     private CarService carService;
     private PlaceService placeService;
+    private UserService userService;
 
     private static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(LoginController.class);
 
     @Autowired
-    public TaskService(TaskDao dao, CarService service1, PlaceService service2){
+    public TaskService(TaskDao dao, CarService service1, PlaceService service2, UserService service3){
         this.dao = dao;
         this.carService = service1;
         this.placeService = service2;
+        this.userService = service3;
+    }
+
+    // 获取任务数量信息，主页展示
+    public int[] getTaskNumInfo(){
+        int[] info = new int[5];
+        List<Task> allTasks = dao.getAllTask();
+        info[0] = allTasks.size();
+        for(Task task: allTasks){
+            int tmp = task.getStatus();
+            switch (tmp){
+                case 0: info[1]++; break;  // ready
+                case 1: info[2]++; break;  // doing
+                case 2: info[3]++; break;  // done
+                case 3: info[4]++; break;  // err
+                default: // ..
+            }
+        }
+        return info;
+    }
+
+    // 因为task里存的是用户+小车+地址的id，所以在页面显示的时候需要再转回来
+    public String[] getTaskInfo(int taskId){
+        String[] taskInfo = new String[3];
+        Task task = this.getTask(taskId);
+        taskInfo[0] = userService.getAccountById(task.getUserID());
+        taskInfo[1] = placeService.getDescripById(task.getDestination());
+        taskInfo[2] = "顺丰公司";
+        return taskInfo;
+    }
+
+    public List<String[]> fillInfo(List<Task> tasks){
+        ArrayList<String[]> info = new ArrayList<>();
+        for(Task task: tasks){
+            info.add(getTaskInfo(task.getId()));
+        }
+        return info;
     }
 
     public List<Task> getTaskByAccount(String account){
@@ -66,7 +105,7 @@ public class TaskService {
         if(task == null) {
             throw new TaskException("Can't find the task");
         }
-        if(!task.getStatus().equals("ready")){
+        if(task.getStatus() == 0){
             throw new TaskException("The task already started.");
         }
         Car availCar = carService.getAvailCar();
@@ -74,7 +113,7 @@ public class TaskService {
             throw new CarException("There is no cars available now.");
         }
         task.setCarID(availCar.getCarID());
-        task.setStatus("delivering");
+        task.setStatus(1);
         task.setDeliverTime(new Date(System.currentTimeMillis()));
 
         // send string command to car.

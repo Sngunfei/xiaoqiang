@@ -34,4 +34,9 @@ public class CarController {
         carService.save(car);
         return "main";
     }
+
+    @RequestMapping(value = "/carManage", method = RequestMethod.GET)
+    public String carManager(){
+        return "carManage";
+    }
 }
