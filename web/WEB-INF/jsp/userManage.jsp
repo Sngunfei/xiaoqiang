@@ -230,7 +230,7 @@
                             <th class="text-center">${user.email}</th>
                             <th class="text-center">${user.ip}:${user.port}</th>
                             <th class="text-center">
-                                <button type="button" class="btn btn-link"><a href="${pageContext.request.contextPath}/task/task${task.id}">详细信息</a></button>
+                                <button type="button" class="btn btn-link"><a href="${pageContext.request.contextPath}/user/userinfo-${user.id}">详细信息</a></button>
                             </th>
                         </tr>
                     </c:forEach>

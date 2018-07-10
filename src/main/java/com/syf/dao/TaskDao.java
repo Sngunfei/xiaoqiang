@@ -45,6 +45,29 @@ public class TaskDao {
         return tasks;
     }
 
+    public List<Task> getTasksById(int userID){
+        SessionFactory sf = Utils.getSessionFactory();
+        Session session = sf.openSession();
+        Transaction transaction = null;
+        List<Task> tasks = null;
+
+        try{
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("from Task where userID = ?");
+            query.setParameter(0, userID);
+            tasks = query.list();
+            transaction.commit();
+        }catch (HibernateException e) {
+            if(transaction != null)
+                transaction.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+
+        return tasks;
+    }
+
     public List<Task> getAllTask(){
         SessionFactory sf = Utils.getSessionFactory();
         Session session = sf.getCurrentSession();
@@ -133,7 +156,11 @@ public class TaskDao {
         Task task = null;
         try{
             transaction = session.beginTransaction();
-            task = session.load(Task.class, id);
+            Query query = session.createQuery("from Task where id = ?");
+            query.setParameter(0, id);
+            List<Task> tasks = query.list();
+            if(!tasks.isEmpty())
+                task = tasks.get(0);
             transaction.commit();
         }catch (HibernateException e){
             if(transaction != null)

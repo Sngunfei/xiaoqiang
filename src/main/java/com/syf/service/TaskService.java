@@ -80,6 +80,10 @@ public class TaskService {
         return dao.getTaskByAccount(account);
     }
 
+    public List<Task> getTaskById(int userId){
+        return dao.getTasksById(userId);
+    }
+
     public List<Task> getAllTask(){
         return dao.getAllTask();
     }

@@ -75,8 +75,8 @@ public class TaskController {
     public ModelAndView showTaskInfo(@PathVariable("id") int taskId){
         ModelAndView mav = new ModelAndView("taskInfo");
         Task task = taskService.getTask(taskId);
-        List<Task> tasks = new ArrayList<>();
-        mav.addObject("task", tasks.add(task));
+        mav.addObject("task", task);
+        System.out.println(task.getId()+" "+task.getUserID());
         return mav;
     }
 

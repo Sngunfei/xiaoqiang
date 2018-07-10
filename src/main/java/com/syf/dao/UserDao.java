@@ -32,6 +32,30 @@ public class UserDao {
         }
     }
 
+//    public String getAccountById(int id){
+//        SessionFactory sf = Utils.getSessionFactory();
+//        Session session = sf.openSession();
+//        Transaction transaction = null;
+//        String account = null;
+//
+//        try{
+//            transaction = session.beginTransaction();
+//            Query query = session.createQuery("from User where id = ?");
+//            query.setParameter(0, id);
+//            List<User> users = query.list();
+//            account = users.isEmpty()? null: users.get(0).getAccount();
+//            transaction.commit();
+//        }catch (HibernateException e){
+//            if(transaction != null)
+//                transaction.rollback();
+//            e.printStackTrace();
+//        }finally {
+//            session.close();
+//        }
+//
+//        return account;
+//    }
+
     public User getUserByAccount(String account){
         SessionFactory sf = Utils.getSessionFactory();
         Session session = sf.openSession();
