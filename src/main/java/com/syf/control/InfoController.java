@@ -1,4 +1,4 @@
-//package com.syf.control;
-//
-//public class InfoController {
-//}
+package com.syf.control;
+
+public class InfoController {
+}
