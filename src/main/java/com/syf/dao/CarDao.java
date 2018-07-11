@@ -16,7 +16,7 @@ public class CarDao {
 
     public void addCar(Car car){
         SessionFactory sf = Utils.getSessionFactory();
-        Session session = sf.getCurrentSession();
+        Session session = sf.openSession();
         Transaction transaction = null;
 
         try{
@@ -32,9 +32,27 @@ public class CarDao {
         }
     }
 
+    public void updateCar(Car car){
+        SessionFactory sf = Utils.getSessionFactory();
+        Session session = sf.openSession();
+        Transaction transaction = null;
+
+        try{
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(car);
+            transaction.commit();
+        }catch (HibernateException e){
+            if(transaction != null)
+                transaction.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+    }
+
     public List<Car> getAllcar(){
         SessionFactory sf = Utils.getSessionFactory();
-        Session session = sf.getCurrentSession();
+        Session session = sf.openSession();
         Transaction transaction = null;
         List<Car> cars = null;
 
@@ -54,18 +72,9 @@ public class CarDao {
         return cars;
     }
 
-    public Car getAvailableCar(){
-        List<Car> cars = getAllcar();
-        for(Car car: cars){
-            if(car.getStatus().equals("ready"))
-                return car;
-        }
-        return null;
-    }
-
     public void deleteCar(int carID){
         SessionFactory sf = Utils.getSessionFactory();
-        Session session = sf.getCurrentSession();
+        Session session = sf.openSession();
         Transaction transaction = null;
 
         try{
@@ -80,5 +89,29 @@ public class CarDao {
         }finally {
             session.close();
         }
+    }
+
+    public Car getCarByIp(String ip){
+        SessionFactory sf = Utils.getSessionFactory();
+        Session session = sf.openSession();
+        Transaction transaction = null;
+        Car car = null;
+
+        try{
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("from Car where ip = ?");
+            query.setParameter(0, ip);
+            List<Car> cars = query.list();
+            car = cars.isEmpty()? null: cars.get(0);
+            transaction.commit();
+        }catch (HibernateException e){
+            if(transaction != null)
+                transaction.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+
+        return car;
     }
 }

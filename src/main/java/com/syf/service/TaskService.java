@@ -112,13 +112,17 @@ public class TaskService {
         if(task.getStatus() == 0){
             throw new TaskException("The task already started.");
         }
-        Car availCar = carService.getAvailCar();
+        Car availCar = carService.getAvailableCar();
         if(availCar == null){
             throw new CarException("There is no cars available now.");
         }
         task.setCarID(availCar.getCarID());
         task.setStatus(1);
+        availCar.setStatus(1);
         task.setDeliverTime(new Date(System.currentTimeMillis()));
+
+        updateTask(task);
+        carService.updateCar(availCar);
 
         // send string command to car.
         sendCmd(task, availCar);

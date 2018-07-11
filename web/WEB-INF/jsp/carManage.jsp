@@ -23,6 +23,106 @@
     <!--<![endif]-->
 </head>
 
+<script>
+    // 提交表单
+    function check_form()
+    {
+        var ip = $.trim($('#ip').val());
+        var port = $.trim($('#port').val());
+
+        if(!ip)
+        {
+            alert('IP地址不能为空！');
+            return false;
+        }
+
+        if(!port)
+        {
+            alert('端口号不能为空！');
+            return false;
+        }
+
+        var form_data = $('#form_data').serialize();
+
+        $.ajax(
+            {
+                url: '${pageContext.request.contextPath}/car/addCar.do',
+                data:{"ip":ip, "port": port},
+                type: "post",
+                beforeSend:function()
+                {
+                    $("#tip").html("<span style='color:blue'>正在添加...</span>");
+                    return true;
+                },
+                success:function()
+                {
+                    alert("添加成功");
+                    location.reload();
+                },
+                error:function()
+                {
+                    alert('添加失败');
+                },
+                complete:function()
+                {
+                    $('#acting_tips').hide();
+                }
+            });
+        return false;
+    }
+
+    function testConnect() {
+        var ip = $.trim($('#ip').val());
+        var port = $.trim($('#port').val());
+
+        if(!ip)
+        {
+            alert('IP地址不能为空！');
+            return false;
+        }
+
+        if(!port)
+        {
+            alert('端口号不能为空！');
+            return false;
+        }
+
+        var form_data = $('#form_data').serialize();
+
+        $.ajax(
+            {
+                url: '${pageContext.request.contextPath}/car/testConnect.do',
+                data:{"ip":ip, "port": port},
+                type: "post",
+                beforeSend:function()
+                {
+                    // $("#tip").html("<span style='color:blue'>正在添加...</span>");
+                    return true;
+                },
+                success:function()
+                {
+                    alert("连接成功！");
+                    location.reload();
+                },
+                error:function()
+                {
+                    alert('无法连接！');
+                },
+                complete:function()
+                {
+                    $('#acting_tips').hide();
+                }
+            });
+        return false;
+    }
+
+    // $(function () { $('#addUserModal').on('hide.bs.modal', function () {
+    //     // 关闭时清空edit状态为add
+    //     location.reload();
+    // })
+    // });
+</script>
+
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
@@ -50,7 +150,7 @@
 </nav>
 
 <div class="container-fluid">
-    <div class="row">
+    1<div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li><a href="${pageContext.request.contextPath}/task/taskManage">任务管理 <span class="sr-only">(current)</span></a></li>
@@ -71,22 +171,27 @@
                 <div class="col-xs-6 col-sm-3 placeholder">
                     <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
                     <h4>所有车辆</h4>
-                    <span class="text-muted">Something else</span>
+                    <span class="text-muted">${carInfo[0]}</span>
                 </div>
                 <div class="col-xs-6 col-sm-3 placeholder">
                     <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
                     <h4>空闲车辆</h4>
-                    <span class="text-muted">Something else</span>
+                    <span class="text-muted">${carInfo[1]}</span>
                 </div>
                 <div class="col-xs-6 col-sm-3 placeholder">
                     <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
                     <h4>正在进行</h4>
-                    <span class="text-muted">Something else</span>
+                    <span class="text-muted">${carInfo[2]}</span>
+                </div>
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
+                    <h4>正在返回</h4>
+                    <span class="text-muted">${carInfo[3]}</span>
                 </div>
                 <div class="col-xs-6 col-sm-3 placeholder">
                     <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
                     <h4>故障车辆</h4>
-                    <span class="text-muted">Something else</span>
+                    <span class="text-muted">${carInfo[4]}</span>
                 </div>
             </div>
 
@@ -107,44 +212,34 @@
                                     &times;
                                 </button>
                                 <h4 class="modal-title" id="myModalLabel">
-                                    新建任务
+                                    添加新车
                                 </h4>
                             </div>
                             <div class="modal-body">
                                 <form class="form-horizontal" role="form">
                                     <div class="form-group">
-                                        <label for="user" class="col-sm-3 control-label">用户</label>
+                                        <label for="ip" class="col-sm-3 control-label">IP</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="user" name="user" value=""
-                                                   placeholder="请输入顾客账户">
+                                            <input type="text" class="form-control" id="ip" name="ip" value=""
+                                                   placeholder="IP地址">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="address" class="col-sm-3 control-label">地址</label>
+                                        <label for="port" class="col-sm-3 control-label">Port</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="address" value="" id="address"
-                                                   placeholder="地址">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="remark" class="col-sm-3 control-label">备注</label>
-                                        <div class="col-sm-9">
-                                <textarea  class="form-control"  name="remark" id="remark"
-                                           placeholder="备注信息">
-
-                                </textarea>
+                                            <input type="text" class="form-control" name="port" value="" id="port"
+                                                   placeholder="端口号">
                                         </div>
                                     </div>
                                 </form>
                             </div>
+
+
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                                </button>
-                                <button type="submit" class="btn btn-primary">
-                                    提交
-                                </button><span id="tip"> </span>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-default" onclick="testConnect()">测试</button>
+                                <button type="submit" class="btn btn-primary">提交</button><span id="tip"></span>
                             </div>
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal -->
