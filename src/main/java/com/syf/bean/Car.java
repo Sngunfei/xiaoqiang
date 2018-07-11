@@ -16,7 +16,7 @@ public class Car extends BasePO{
     private int carID;
 
     @Column(name = "status", nullable = false)
-    private String status;
+    private int status;
 
     @Column(name = "ip")
     private String ip;
@@ -28,15 +28,11 @@ public class Car extends BasePO{
         return carID;
     }
 
-    public void setCarID(int carID) {
-        this.carID = carID;
-    }
-
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

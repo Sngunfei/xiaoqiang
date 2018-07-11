@@ -71,22 +71,22 @@
                 <div class="col-xs-6 col-sm-3 placeholder">
                     <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
                     <h4>所有车辆</h4>
-                    <span class="text-muted">Something else</span>
+                    <span class="text-muted">${info[0]}</span>
                 </div>
                 <div class="col-xs-6 col-sm-3 placeholder">
                     <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
                     <h4>空闲车辆</h4>
-                    <span class="text-muted">Something else</span>
+                    <span class="text-muted">${info[2]}</span>
                 </div>
                 <div class="col-xs-6 col-sm-3 placeholder">
                     <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
                     <h4>正在进行</h4>
-                    <span class="text-muted">Something else</span>
+                    <span class="text-muted">${info[1]}</span>
                 </div>
                 <div class="col-xs-6 col-sm-3 placeholder">
                     <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
                     <h4>故障车辆</h4>
-                    <span class="text-muted">Something else</span>
+                    <span class="text-muted">${info[3]}</span>
                 </div>
             </div>
 
@@ -107,24 +107,24 @@
                                     &times;
                                 </button>
                                 <h4 class="modal-title" id="myModalLabel">
-                                    新建任务
+                                    添加新车
                                 </h4>
                             </div>
                             <div class="modal-body">
                                 <form class="form-horizontal" role="form">
                                     <div class="form-group">
-                                        <label for="user" class="col-sm-3 control-label">用户</label>
+                                        <label for="user" class="col-sm-3 control-label">ip</label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" id="user" name="user" value=""
-                                                   placeholder="请输入顾客账户">
+                                                   placeholder="ip地址">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="address" class="col-sm-3 control-label">地址</label>
+                                        <label for="address" class="col-sm-3 control-label">port</label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" name="address" value="" id="address"
-                                                   placeholder="地址">
+                                                   placeholder="端口号">
                                         </div>
                                     </div>
 
@@ -143,7 +143,7 @@
                                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                                 </button>
                                 <button type="submit" class="btn btn-primary">
-                                    提交
+                                    确认
                                 </button><span id="tip"> </span>
                             </div>
                         </div><!-- /.modal-content -->

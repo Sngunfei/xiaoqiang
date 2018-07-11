@@ -104,6 +104,7 @@ public class TaskService {
         dao.deleteTask(id);
     }
 
+
     public void startTask(int id) throws TaskException, CarException {
         Task task = dao.getTask(id);
         if(task == null) {
@@ -119,6 +120,10 @@ public class TaskService {
         task.setCarID(availCar.getCarID());
         task.setStatus(1);
         task.setDeliverTime(new Date(System.currentTimeMillis()));
+        availCar.setStatus(1);
+
+        updateTask(task);             // 更新任务和小车进度
+        carService.updateCar(availCar);
 
         // send string command to car.
         sendCmd(task, availCar);
