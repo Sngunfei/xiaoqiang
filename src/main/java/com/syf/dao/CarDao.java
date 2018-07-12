@@ -50,6 +50,29 @@ public class CarDao {
         }
     }
 
+    public Car getCarById(int carId){
+        SessionFactory sf = Utils.getSessionFactory();
+        Session session = sf.openSession();
+        Transaction transaction = null;
+        Car car = null;
+
+        try{
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("from Car where carID = ?");
+            query.setParameter(0, carId);
+            List<Car> cars = query.list();
+            car = cars.isEmpty()? null: cars.get(0);
+            transaction.commit();
+        }catch (HibernateException e){
+            if(transaction != null)
+                transaction.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+            return car;
+        }
+    }
+
     public List<Car> getAllcar(){
         SessionFactory sf = Utils.getSessionFactory();
         Session session = sf.openSession();

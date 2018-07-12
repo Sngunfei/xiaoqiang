@@ -1,9 +1,11 @@
 package com.syf.control;
 
 import com.syf.bean.Car;
+import com.syf.bean.Task;
 import com.syf.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -82,4 +84,16 @@ public class CarController {
         }
     }
 
+    @RequestMapping(value = "/carInfo-{id}", method = RequestMethod.GET)
+    public ModelAndView showCar(@PathVariable("id") int carId){
+        ModelAndView mav = new ModelAndView("carInfo");
+        Car car = carService.getCarById(carId);
+        mav.addObject("car", car);
+        // 如果状态为1(delivering), 那么就把该任务信息也展示出来
+        if(car.getStatus() == 1){
+            // ToDO: car信息里没有保存taskid, task里才有carid, 在不重构数据库的情况下，需要从task表里找，效率较低
+        }
+
+        return mav;
+    }
 }

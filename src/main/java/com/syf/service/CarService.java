@@ -94,4 +94,8 @@ public class CarService {
     public void updateCar(Car car){
         carDao.updateCar(car);
     }
+
+    public Car getCarById(int carId){
+        return carDao.getCarById(carId);
+    }
 }
