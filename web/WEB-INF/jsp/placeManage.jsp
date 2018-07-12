@@ -32,31 +32,29 @@
     // 提交表单
     function check_form()
     {
-        var user = $.trim($('#user').val());
-        var address = $.trim($('#address').val());
+        var descrip = $.trim($('#descrip').val());
+        var x = $.trim($('#x').val());
+        var y = $.trim($('#y').val());
+        var z = $.trim($('#z').val());
+        var x1 = $.trim($('#x1').val());
+        var y1 = $.trim($('#y1').val());
+        var z1 = $.trim($('#z1').val());
+        var w1 = $.trim($('#w1').val());
 
-        if(!user)
+        if(!descrip || !x || !y || !z || !x1 || !y1 || !z1 || !w1)
         {
-            alert('用户不能为空！');
+            alert('坐标信息不能为空！');
             return false;
         }
-
-        if(!address)
-        {
-            alert('地址不能为空！');
-            return false;
-        }
-
-        var form_data = $('#form_data').serialize();
 
         $.ajax(
             {
-                url: '${pageContext.request.contextPath}/task/addTask.do',
-                data:{"user":user, "address": address},
+                url: '${pageContext.request.contextPath}/place/addPlace.do',
+                data:{"descrip":descrip, "x":x, "y": y, "z": z, "x1": x1, "y1": y1, "z1": z1, "w1": w1},
                 type: "post",
                 beforeSend:function()
                 {
-                    $("#tip").html("<span style='color:blue'>正在处理...</span>");
+                    $("#tip").html("<span style='color:blue'>正在添加...</span>");
                     return true;
                 },
                 success:function()
@@ -66,7 +64,7 @@
                 },
                 error:function()
                 {
-                    alert('用户/地址不存在，请先添加');
+                    alert('错误！');
                 },
                 complete:function()
                 {
@@ -76,12 +74,6 @@
 
         return false;
     }
-
-    // $(function () { $('#addUserModal').on('hide.bs.modal', function () {
-    //     // 关闭时清空edit状态为add
-    //     location.reload();
-    // })
-    // });
 </script>
 
 <body>
@@ -114,10 +106,10 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="${pageContext.request.contextPath}/task/taskManage">任务管理 <span class="sr-only">(current)</span></a></li>
+                <li><a href="${pageContext.request.contextPath}/task/taskManage">任务管理 <span class="sr-only">(current)</span></a></li>
                 <li><a href="${pageContext.request.contextPath}/car/carManage">车辆管理</a></li>
                 <li><a href="${pageContext.request.contextPath}/user/userManage">用户管理</a></li>
-                <li><a href="${pageContext.request.contextPath}/place/placeManage">蜂巢管理</a></li>
+                <li class="active"><a href="${pageContext.request.contextPath}/place/placeManage">蜂巢管理</a></li>
                 <li><a href="#">其他设置</a></li>
             </ul>
             <ul class="nav nav-sidebar">
@@ -125,50 +117,19 @@
                 <li><a href="${pageContext.request.contextPath}/place/newPlace">添加地址</a></li>
                 <li><a href="${pageContext.request.contextPath}/car/newCar">添加小车</a></li>
             </ul>
+
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Dashboard</h1>
-            <div class="row placeholders">
-                <div class="col-xs-6 col-sm-3 placeholder">
-                    <a href="${pageContext.request.contextPath}/task/ready">
-                    <img src= "../../resources/icon/ready.png" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
-                    </a>
-                    <h4>尚未进行</h4>
-                    <span class="text-muted">${info[1]}</span>
-                </div>
-                <div class="col-xs-6 col-sm-3 placeholder">
-                    <a href = "${pageContext.request.contextPath}/task/done">
-                    <img src="../../resources/icon/done.png" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
-                    </a>
-                    <h4>已完成</h4>
-                    <span class="text-muted">${info[3]}</span>
-                </div>
-                <div class="col-xs-6 col-sm-3 placeholder">
-                    <a href = "${pageContext.request.contextPath}/task/doing">
-                    <img src="../../resources/icon/doing.png" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
-                    </a>
-                    <h4>进行中</h4>
-                    <span class="text-muted">${info[2]}</span>
-                </div>
-                <div class="col-xs-6 col-sm-3 placeholder">
-                    <a href = "${pageContext.request.contextPath}/task/error">
-                    <img src="../../resources/icon/error.png" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
-                    </a>
-                    <h4>故障信息</h4>
-                    <span class="text-muted">${info[4]}</span>
-                </div>
-            </div>
-
             <div class="row">
                 <div class="form-inline">
-                    <h2 class="sub-header">所有任务</h2>
-                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addTask">新建任务</button>
+                    <h2 class="sub-header">地址信息</h2>
+                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addUser">添加新地址</button>
                 </div>
             </div>
 
             <!-- 模态框（Modal） -->
             <form method="post" action="" class="form-horizontal" role="form" id="form_data" onsubmit="return check_form()" style="margin: 20px;">
-                <div class="modal fade" id="addTask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -176,36 +137,69 @@
                                     &times;
                                 </button>
                                 <h4 class="modal-title" id="myModalLabel">
-                                    新建任务
+                                    新地址
                                 </h4>
                             </div>
                             <div class="modal-body">
                                 <form class="form-horizontal" role="form">
                                     <div class="form-group">
-                                        <label for="user" class="col-sm-3 control-label">用户</label>
+                                        <label for="descrip" class="col-sm-3 control-label">地址</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="user" name="user" value=""
-                                                   placeholder="请输入顾客账户">
+                                            <input type="text" class="form-control" id="descrip" name="descrip" value=""
+                                                   placeholder="详细地址">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="address" class="col-sm-3 control-label">地址</label>
+                                        <label for="x" class="col-sm-3 control-label">X坐标</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="address" value="" id="address"
-                                                   placeholder="地址">
+                                            <input type="text" class="form-control" name="x" value="" id="x"
+                                                   placeholder="">
                                         </div>
                                     </div>
-
                                     <div class="form-group">
-                                        <label for="remark" class="col-sm-3 control-label">备注</label>
+                                        <label for="y" class="col-sm-3 control-label">Y坐标</label>
                                         <div class="col-sm-9">
-                                <textarea  class="form-control"  name="remark" id="remark"
-                                           placeholder="备注信息">
-
-                                </textarea>
+                                            <input type="text" class="form-control" name="y" value="" id="y"
+                                                   placeholder="">
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="z" class="col-sm-3 control-label">Z坐标</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="z" value="" id="z"
+                                                   placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="x1" class="col-sm-3 control-label">X角度</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="x1" value="" id="x1"
+                                                   placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="y1" class="col-sm-3 control-label">Y角度</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="y1" value="" id="y1"
+                                                   placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="z1" class="col-sm-3 control-label">Z角度</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="z1" value="" id="z1"
+                                                   placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="w1" class="col-sm-3 control-label">W角度</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="w1" value="" id="w1"
+                                                   placeholder="">
+                                        </div>
+                                    </div>
+
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -225,28 +219,27 @@
                     <thead>
                     <tr>
                         <th class="text-center">#</th>
-                        <th class="text-center">用户</th>
-                        <th class="text-center">收货地址</th>
-                        <th class="text-center">类别</th>
-                        <th class="text-center">开始时间</th>
-                        <th class="text-center">结束时间</th>
-                        <th class="text-center">状态</th>
-                        <th class="text-center">详情</th>
+                        <th class="text-center">描述</th>
+                        <th class="text-center">X坐标</th>
+                        <th class="text-center">Y坐标</th>
+                        <th class="text-center">Z坐标</th>
+                        <th class="text-center">X角度</th>
+                        <th class="text-center">Y角度</th>
+                        <%--<th class="text-center">Z角度</th>--%>
+                        <%--<th class="text-center">W角度</th>--%>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${tasks}" var="task" varStatus="loop">
+                    <c:forEach items="${places}" var="place" varStatus="loop">
                         <tr>
-                            <th class="text-center">${task.id}</th>
-                            <th class="text-center">${task.userID}</th>
-                            <th class="text-center">${task.destination}</th>
-                            <th class="text-center">顺丰快递</th>
-                            <th class="text-center">${task.startTime}</th>
-                            <th class="text-center">${task.finishTime}</th>
-                            <th class="text-center">${task.status}</th>
-                            <th class="text-center">
-                                <button type="button" class="btn btn-link"><a href="${pageContext.request.contextPath}/task/task${task.id}">详细信息</a></button>
-                            </th>
+                            <th class="text-center">${place.id}</th>
+                            <th class="text-center">${place.locX}</th>
+                            <th class="text-center">${place.locY}</th>
+                            <th class="text-center">${place.locZ}</th>
+                            <th class="text-center">${place.angX}</th>
+                            <th class="text-center">${place.angY}</th>
+                            <%--<th class="text-center">${place.angZ}</th>--%>
+                            <%--<th class="text-center">${place.angW}</th>--%>
                         </tr>
                     </c:forEach>
                     </tbody>

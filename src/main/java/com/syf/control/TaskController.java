@@ -56,19 +56,16 @@ public class TaskController {
         }
     }
 
-    @RequestMapping(value = "/newTask", method = RequestMethod.GET)
-    public String newTask(){
-        return "newTask";
-    }
-
     @RequestMapping(value = "/startTask.do", method = RequestMethod.POST)
-    public String startTask(@RequestParam("taskid") int id){
+    public void startTask(@RequestParam("id") int id, HttpServletResponse response){
         try {
             taskService.startTask(id);
+            response.getWriter().println("{\"success\":true}");
+            response.getWriter().flush();
+            response.getWriter().close();
         }catch (Exception e){
             e.printStackTrace();
         }
-        return "main";
     }
 
     @RequestMapping(value = "/task{id}", method = RequestMethod.GET)

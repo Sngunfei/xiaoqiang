@@ -156,7 +156,7 @@
                 <li><a href="${pageContext.request.contextPath}/task/taskManage">任务管理 <span class="sr-only">(current)</span></a></li>
                 <li class="active"><a href="${pageContext.request.contextPath}/car/carManage">车辆管理</a></li>
                 <li><a href="${pageContext.request.contextPath}/user/userManage">用户管理</a></li>
-                <li><a href="#">蜂巢管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/place/placeManage">蜂巢管理</a></li>
                 <li><a href="#">其他设置</a></li>
             </ul>
             <ul class="nav nav-sidebar">
@@ -198,7 +198,7 @@
             <div class="row">
                 <div class="form-inline">
                     <h2 class="sub-header">车辆信息</h2>
-                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addTask">添加小车</button>
+                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addTask">添加小车</button>
                 </div>
             </div>
 

@@ -64,7 +64,7 @@
                 <li class="active"><a href="${pageContext.request.contextPath}/task/taskManage">任务管理 <span class="sr-only">(current)</span></a></li>
                 <li><a href="${pageContext.request.contextPath}/car/carManage">车辆管理</a></li>
                 <li><a href="${pageContext.request.contextPath}/user/userManage">用户管理</a></li>
-                <li><a href="#">蜂巢管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/place/placeManage">蜂巢管理</a></li>
                 <li><a href="#">其他设置</a></li>
             </ul>
             <ul class="nav nav-sidebar">

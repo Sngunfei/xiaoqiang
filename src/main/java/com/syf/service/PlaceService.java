@@ -5,6 +5,8 @@ import com.syf.dao.PlaceDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PlaceService {
 
@@ -37,5 +39,9 @@ public class PlaceService {
 
     public void save(Place place){
         placeDao.save(place);
+    }
+
+    public List<Place> getAllPlaces(){
+        return placeDao.getAllPlaces();
     }
 }

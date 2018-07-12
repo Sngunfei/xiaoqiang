@@ -88,4 +88,25 @@ public class PlaceDao {
             session.close();
         }
     }
+
+    public List<Place> getAllPlaces(){
+        SessionFactory sf = Utils.getSessionFactory();
+        Session session = sf.openSession();
+        Transaction transaction = null;
+        List<Place> places = null;
+
+        try{
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("from Place");
+            places = query.list();
+            transaction.commit();
+        }catch (HibernateException e){
+            if(transaction != null)
+                transaction.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+        return places;
+    }
 }
