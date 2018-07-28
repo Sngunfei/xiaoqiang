@@ -6,8 +6,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,7 +14,7 @@ import java.util.List;
 public class AdministerDao {
 
     public void save(Administer administer){
-        SessionFactory sf = Utils.getSessionFactory();
+        SessionFactory sf = DB.getSessionFactory();
         Session session = sf.openSession();
         Transaction transaction = null;
 
@@ -34,7 +32,7 @@ public class AdministerDao {
     }
 
     public void updateAdmin(Administer admin){
-        SessionFactory sf = Utils.getSessionFactory();
+        SessionFactory sf = DB.getSessionFactory();
         Session session = sf.openSession();
         Transaction transaction = null;
 
@@ -56,7 +54,7 @@ public class AdministerDao {
     }
 
     public Administer getAdminByAccount(String account) {
-        SessionFactory sf = Utils.getSessionFactory();
+        SessionFactory sf = DB.getSessionFactory();
         Session session = sf.openSession();
         Transaction transaction = session.getTransaction();
         Administer administer = null;
@@ -79,7 +77,7 @@ public class AdministerDao {
     }
 
     public void deleteAdmin(String account){
-        SessionFactory sf = Utils.getSessionFactory();
+        SessionFactory sf = DB.getSessionFactory();
         Session session = sf.openSession();
         Transaction transaction = session.getTransaction();
 

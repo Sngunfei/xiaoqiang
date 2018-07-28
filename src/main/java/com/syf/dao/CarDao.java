@@ -15,7 +15,7 @@ import java.util.List;
 public class CarDao {
 
     public void addCar(Car car){
-        SessionFactory sf = Utils.getSessionFactory();
+        SessionFactory sf = DB.getSessionFactory();
         Session session = sf.openSession();
         Transaction transaction = null;
 
@@ -33,7 +33,7 @@ public class CarDao {
     }
 
     public void updateCar(Car car){
-        SessionFactory sf = Utils.getSessionFactory();
+        SessionFactory sf = DB.getSessionFactory();
         Session session = sf.openSession();
         Transaction transaction = null;
 
@@ -51,7 +51,7 @@ public class CarDao {
     }
 
     public Car getCarById(int carId){
-        SessionFactory sf = Utils.getSessionFactory();
+        SessionFactory sf = DB.getSessionFactory();
         Session session = sf.openSession();
         Transaction transaction = null;
         Car car = null;
@@ -74,7 +74,7 @@ public class CarDao {
     }
 
     public List<Car> getAllcar(){
-        SessionFactory sf = Utils.getSessionFactory();
+        SessionFactory sf = DB.getSessionFactory();
         Session session = sf.openSession();
         Transaction transaction = null;
         List<Car> cars = null;
@@ -96,7 +96,7 @@ public class CarDao {
     }
 
     public void deleteCar(int carID){
-        SessionFactory sf = Utils.getSessionFactory();
+        SessionFactory sf = DB.getSessionFactory();
         Session session = sf.openSession();
         Transaction transaction = null;
 
@@ -115,7 +115,7 @@ public class CarDao {
     }
 
     public Car getCarByIp(String ip){
-        SessionFactory sf = Utils.getSessionFactory();
+        SessionFactory sf = DB.getSessionFactory();
         Session session = sf.openSession();
         Transaction transaction = null;
         Car car = null;

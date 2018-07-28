@@ -1,6 +1,5 @@
 package com.syf.dao;
 
-import com.syf.bean.Administer;
 import com.syf.bean.Place;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -19,7 +18,7 @@ public class PlaceDao {
     }
 
     public Place getPlaceById(int id){
-        SessionFactory sf = Utils.getSessionFactory();
+        SessionFactory sf = DB.getSessionFactory();
         Session session = sf.openSession();
         Transaction transaction = null;
         Place place = null;
@@ -40,7 +39,7 @@ public class PlaceDao {
     }
 
     public Place getPlaceByAddr(String descrip){
-        SessionFactory sf = Utils.getSessionFactory();
+        SessionFactory sf = DB.getSessionFactory();
         Session session = sf.openSession();
         Transaction transaction = null;
         Place place = null;
@@ -72,7 +71,7 @@ public class PlaceDao {
     }
 
     public void save(Place place){
-        SessionFactory sf = Utils.getSessionFactory();
+        SessionFactory sf = DB.getSessionFactory();
         Session session = sf.openSession();
         Transaction transaction = null;
 
@@ -90,7 +89,7 @@ public class PlaceDao {
     }
 
     public List<Place> getAllPlaces(){
-        SessionFactory sf = Utils.getSessionFactory();
+        SessionFactory sf = DB.getSessionFactory();
         Session session = sf.openSession();
         Transaction transaction = null;
         List<Place> places = null;

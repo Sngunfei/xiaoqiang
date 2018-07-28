@@ -6,7 +6,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
@@ -15,7 +14,7 @@ import java.util.List;
 public class UserDao {
 
     public void save(User user){
-        SessionFactory sf = Utils.getSessionFactory();
+        SessionFactory sf = DB.getSessionFactory();
         Session session = sf.openSession();
         Transaction transaction = null;
 
@@ -33,7 +32,7 @@ public class UserDao {
     }
 
 //    public String getAccountById(int id){
-//        SessionFactory sf = Utils.getSessionFactory();
+//        SessionFactory sf = DB.getSessionFactory();
 //        Session session = sf.openSession();
 //        Transaction transaction = null;
 //        String account = null;
@@ -57,7 +56,7 @@ public class UserDao {
 //    }
 
     public User getUserByAccount(String account){
-        SessionFactory sf = Utils.getSessionFactory();
+        SessionFactory sf = DB.getSessionFactory();
         Session session = sf.openSession();
         Transaction transaction = null;
         User user = null;
@@ -80,7 +79,7 @@ public class UserDao {
     }
 
     public User getUserById(int userId){
-        SessionFactory sf = Utils.getSessionFactory();
+        SessionFactory sf = DB.getSessionFactory();
         Session session = sf.openSession();
         Transaction transaction = null;
         User user = null;
@@ -103,7 +102,7 @@ public class UserDao {
     }
 
     public void deleteUser(String account){
-        SessionFactory sf = Utils.getSessionFactory();
+        SessionFactory sf = DB.getSessionFactory();
         Session session = sf.openSession();
         Transaction transaction = null;
 
@@ -123,7 +122,7 @@ public class UserDao {
     }
 
     public void updateUser(User theUer){
-        SessionFactory sf = Utils.getSessionFactory();
+        SessionFactory sf = DB.getSessionFactory();
         Session session = sf.openSession();
         Transaction transaction = null;
 
@@ -146,7 +145,7 @@ public class UserDao {
     }
 
     public List<User> getAllAccounts(){
-        SessionFactory sf = Utils.getSessionFactory();
+        SessionFactory sf = DB.getSessionFactory();
         Session session = sf.openSession();
         Transaction transaction = null;
         List<User> users = null;
