@@ -110,7 +110,7 @@ public class TaskService {
         if(task == null) {
             throw new TaskException("Can't find the task");
         }
-        if(task.getStatus() == 0){
+        if(task.getStatus() > 0){
             throw new TaskException("The task already started.");
         }
         Car availCar = carService.getAvailableCar();
