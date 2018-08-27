@@ -98,7 +98,6 @@
                     <thead>
                     <tr>
                         <th class="text-center">#</th>
-                        <th class="text-center">用户</th>
                         <th class="text-center">收货地址</th>
                         <th class="text-center">类别</th>
                         <th class="text-center">开始时间</th>
@@ -111,12 +110,18 @@
                     <c:forEach items="${tasks}" var="task" varStatus="loop">
                         <tr>
                             <th class="text-center">${task.id}</th>
-                            <th class="text-center">${task.userID}</th>
-                            <th class="text-center">${task.destination}</th>
-                            <th class="text-center">顺丰快递</th>
+                            <th class="text-center">${places[loop.count-1]}</th>
+                            <th class="text-center">${task.cp}</th>
                             <th class="text-center">${task.startTime}</th>
                             <th class="text-center">${task.finishTime}</th>
-                            <th class="text-center">${task.status}</th>
+                            <th class="text-center">
+                                <c:choose>
+                                    <c:when test="${task.status==0}">已就绪</c:when>
+                                    <c:when test="${task.status==1}">正在配送</c:when>
+                                    <c:when test="${task.status==2}">已完成</c:when>
+                                    <c:when test="${task.status==3}">失败</c:when>
+                                </c:choose>
+                            </th>
                             <th class="text-center">
                                 <button type="button" class="btn btn-link"><a href="${pageContext.request.contextPath}/user/user${user.id}">详细信息</a></button>
                             </th>

@@ -112,6 +112,14 @@ public class CarController {
             // ToDO: car信息里没有保存taskid, task里才有carid, 在不重构数据库的情况下，需要从task表里找，效率较低
         }
 
+        String status = "default";
+        switch (car.getStatus()){
+            case 0: status = "已就绪";break;
+            case 1: status = "正在配送"; break;
+            case 2: status = "正在返程"; break;
+            case 3: status = "故障ing"; break;
+        }
+        mav.addObject("status", status);
         return mav;
     }
 }

@@ -2,6 +2,7 @@ package com.syf.control;
 
 import com.syf.bean.Task;
 import com.syf.bean.User;
+import com.syf.service.PlaceService;
 import com.syf.service.TaskService;
 import com.syf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +25,13 @@ public class UserController {
 
     UserService userService;
     TaskService taskService;
+    PlaceService placeService;
 
     @Autowired
-    public UserController(UserService service1, TaskService service2) {
+    public UserController(UserService service1, TaskService service2, PlaceService service3) {
         this.userService = service1;
         this.taskService = service2;
+        this.placeService = service3;
     }
 
     @RequestMapping(value = "/newUser", method = RequestMethod.GET)
@@ -71,9 +74,13 @@ public class UserController {
 
         User user = userService.getUserById(userID);
         List<Task> tasks = taskService.getTaskById(userID);
+        String[] places = new String[tasks.size()];
+        for(int i=0; i<tasks.size(); i++){
+            places[i] = placeService.getDescripById(tasks.get(i).getDestination());
+        }
         mav.addObject("user", user);
         mav.addObject("tasks", tasks);
-
+        mav.addObject("places", places);
         return mav;
     }
 

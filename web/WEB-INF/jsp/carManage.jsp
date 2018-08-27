@@ -168,17 +168,23 @@
             <h1 class="page-header">Dashboard</h1>
             <div class="row placeholders">
                 <div class="col-xs-6 col-sm-3 placeholder">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
+                    <a href = "${pageContext.request.contextPath}/task/doing">
+                        <img src="../../resources/icon/carDoc.png" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
+                    </a>
                     <h4>所有车辆</h4>
                     <span class="text-muted">${carInfo[0]}</span>
                 </div>
                 <div class="col-xs-6 col-sm-3 placeholder">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
+                    <a href = "${pageContext.request.contextPath}/task/doing">
+                        <img src="../../resources/icon/car.png" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
+                    </a>
                     <h4>空闲车辆</h4>
                     <span class="text-muted">${carInfo[1]}</span>
                 </div>
                 <div class="col-xs-6 col-sm-3 placeholder">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
+                    <a href = "${pageContext.request.contextPath}/task/doing">
+                        <img src="../../resources/icon/delivery.png" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
+                    </a>
                     <h4>正在路上</h4>
                     <span class="text-muted">${carInfo[2]}</span>
                 </div>
@@ -188,7 +194,9 @@
                     <%--<span class="text-muted">${carInfo[3]}</span>--%>
                 <%--</div>--%>
                 <div class="col-xs-6 col-sm-3 placeholder">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
+                    <a href = "${pageContext.request.contextPath}/task/doing">
+                        <img src="../../resources/icon/fix.png" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
+                    </a>
                     <h4>故障车辆</h4>
                     <span class="text-muted">${carInfo[4]}</span>
                 </div>
@@ -254,7 +262,6 @@
                                                    placeholder="x,y,z">
                                         </div>
                                     </div>
-
 
                                     <div class="form-group">
                                         <label for="port" class="col-sm-3 control-label">初始位姿</label>

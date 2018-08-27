@@ -81,7 +81,7 @@ public class CarDao {
 
         try{
             transaction = session.beginTransaction();
-            Query query = session.createQuery("from Car");
+            Query query = session.createQuery("from Car order by carID desc ");
             cars = query.list();
             transaction.commit();
         }catch (HibernateException e){

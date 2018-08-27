@@ -74,17 +74,17 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <div class="row">
                 <div class="form-inline">
-                    <h2 class="sub-header">小车详情</h2>
+                    <h2 class="sub-header">车辆详情</h2>
                 </div>
             </div>
 
             <div>
-                <h4>小车编号： ${car.carID}</h4>
-                <h4>通信地址： ${car.ip}:${car.port}</h4>
-                <h4>状态： ${car.status}</h4>
+                <h4>车辆编号: ${car.carID}</h4>
+                <h4>通信地址: ${car.ip}:${car.port}</h4>
+                <h4>运行状态: ${status}</h4>
                 <h4>当前坐标: (${car.x},  ${car.y},  ${car.z})</h4>
                 <h4>当前位姿: (${car.ax},  ${car.ay},  ${car.az},  ${car.aw})</h4>
-                <h4>型号: ${car.model}</h4>
+                <h4>车辆型号: ${car.model}</h4>
             </div>
 
             <%--<div class="row">--%>
