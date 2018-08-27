@@ -122,7 +122,7 @@
                          </c:choose>
                 </h4>
                 <h4>收货地址：${place}</h4>
-                <h4>收货人ID：${account}</h4>
+                <h4>收货人：${account}</h4>
                 <h4>开始时间：${task.startTime}</h4>
                 <h4>运送时间：${task.deliverTime}</h4>
                 <h4>结束时间：${task.finishTime}</h4>
