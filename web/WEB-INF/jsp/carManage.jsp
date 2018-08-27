@@ -25,12 +25,10 @@
 
 <script>
     // 提交表单
-    import * as $ from "./jquery";
-
     function check_form()
     {
-        var ip = $.trim($('#ip').val());
-        var port = $.trim($('#port').val());
+        let ip = $.trim($('#ip').val());
+        let port = $.trim($('#port').val());
 
         if(!ip)
         {
@@ -44,7 +42,7 @@
             return false;
         }
 
-        var form_data = $('#form_data').serialize();
+        let form_data = $('#form_data').serialize();
 
         $.ajax(
             {
@@ -74,8 +72,8 @@
     }
 
     function testConnect() {
-        var ip = $.trim($('#ip').val());
-        var port = $.trim($('#port').val());
+        let ip = $.trim($('#ip').val());
+        let port = $.trim($('#port').val());
 
         if(!ip)
         {
@@ -236,7 +234,6 @@
                                     </div>
                                 </form>
                             </div>
-
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

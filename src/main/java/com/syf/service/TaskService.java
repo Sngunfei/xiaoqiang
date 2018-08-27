@@ -131,8 +131,8 @@ public class TaskService {
 
     private void sendCmd(Task task, Car availCar){
         try {
-            Socket socket = new Socket(availCar.getIp(),availCar.getPort());
             System.out.println(String.format("connect to car(id: %d, ip: %s, port: %d)",availCar.getCarID(),availCar.getIp(),availCar.getPort()));
+            Socket socket = new Socket(availCar.getIp(),availCar.getPort());
             PrintWriter pw = new PrintWriter(socket.getOutputStream());
 
             Place destination = placeService.getPlaceById(task.getDestination());

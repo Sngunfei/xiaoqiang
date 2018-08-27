@@ -59,6 +59,7 @@ public class TaskController {
     @RequestMapping(value = "/startTask.do", method = RequestMethod.POST)
     public void startTask(@RequestParam("id") int id, HttpServletResponse response){
         try {
+            System.out.println("将要启动的任务:" + id);
             taskService.startTask(id);
             response.getWriter().println("{\"success\":true}");
             response.getWriter().flush();

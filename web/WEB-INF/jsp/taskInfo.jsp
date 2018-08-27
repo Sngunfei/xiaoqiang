@@ -29,7 +29,6 @@
 </head>
 
 <script>
-    import * as $ from "./jquery-1.10.2";
 
     function startTask()
     {
@@ -42,7 +41,7 @@
 
         $.ajax(
             {
-                url: '${pageContext.request.contextPath}/task/startTask',
+                url: '${pageContext.request.contextPath}/task/startTask.do',
                 data:{"id":id},
                 type: "post",
 
