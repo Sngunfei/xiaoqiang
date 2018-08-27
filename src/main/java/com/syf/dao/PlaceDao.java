@@ -25,7 +25,11 @@ public class PlaceDao {
 
         try{
             transaction = session.beginTransaction();
-            place = session.load(Place.class, id);
+            Query query = session.createQuery("from Place where id = ?");
+            query.setParameter(0, id);
+            List<Place> places = query.list();
+            if(!places.isEmpty())
+                place = places.get(0);
             transaction.commit();
         }catch (HibernateException e){
             if(transaction != null)
@@ -34,7 +38,6 @@ public class PlaceDao {
         }finally {
             session.close();
         }
-
         return place;
     }
 

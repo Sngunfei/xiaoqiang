@@ -11,12 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.Inet4Address;
-import java.net.Socket;
-import java.net.SocketAddress;
+import java.io.*;
+import java.net.*;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -159,6 +155,7 @@ public class TaskService {
 
         // send string command to car.
         new Thread(() -> sendCmd(task, availCar)).start();
+        new Thread(this::listen).start();
     }
 
     private void sendCmd(Task task, Car availCar){
@@ -177,6 +174,29 @@ public class TaskService {
             socket.close();
         } catch (IOException e) {
             logger.error("send command failed.");
+            e.printStackTrace();
+        }
+    }
+
+    public void listen() {
+        logger.info("开始监听回传信息！");
+        passBack();
+    }
+
+    // 小车回传
+    private void passBack(){
+        try{
+            ServerSocket serverSocket = new ServerSocket(10086);
+            Socket socket = serverSocket.accept();
+            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            String msg;
+            while((msg = br.readLine()) != null){
+                logger.info(msg);
+            }
+            br.close();
+            socket.close();
+            serverSocket.close();
+        }catch (Exception e){
             e.printStackTrace();
         }
     }

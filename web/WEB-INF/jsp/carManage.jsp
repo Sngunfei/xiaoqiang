@@ -29,25 +29,29 @@
     {
         let ip = $.trim($('#ip').val());
         let port = $.trim($('#port').val());
+        let loc1 = $.trim($('#initLoc').val());
+        let loc = loc1.split(",", 3);
+        let pose1 = $.trim($('#pose').val());
+        let pose = pose1.split(",", 4);
 
-        if(!ip)
-        {
+        if(!ip) {
             alert('IP地址不能为空！');
             return false;
         }
-
-        if(!port)
-        {
+        if(!port) {
             alert('端口号不能为空！');
             return false;
         }
-
-        let form_data = $('#form_data').serialize();
+        if(loc.length < 3 || pose.length < 4){
+            alert('初始信息不足！');
+            return false;
+        }
 
         $.ajax(
             {
                 url: '${pageContext.request.contextPath}/car/addCar.do',
-                data:{"ip":ip, "port": port},
+                data:{"ip":ip, "port": port, "x": loc[0], "y": loc[1], "z": loc[2],
+                        "ax": pose[0], "ay": pose[1], "az": pose[2], "aw": pose[3]},
                 type: "post",
                 beforeSend:function()
                 {
@@ -75,20 +79,14 @@
         let ip = $.trim($('#ip').val());
         let port = $.trim($('#port').val());
 
-        if(!ip)
-        {
+        if(!ip) {
             alert('IP地址不能为空！');
             return false;
         }
-
-        if(!port)
-        {
+        if(!port) {
             alert('端口号不能为空！');
             return false;
         }
-
-        let form_data = $('#form_data').serialize();
-
         $.ajax(
             {
                 url: '${pageContext.request.contextPath}/car/testConnect.do',
@@ -232,9 +230,33 @@
                                                    placeholder="端口号">
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="port" class="col-sm-3 control-label">小车型号</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="model" value="" id="model"
+                                                   placeholder="小车型号">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="port" class="col-sm-3 control-label">初始位置</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="initLoc" value="" id="initLoc"
+                                                   placeholder="x,y,z">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="port" class="col-sm-3 control-label">初始位姿</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="pose" value="" id="pose"
+                                                   placeholder="x,y,z,w">
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
-
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                                 <button type="button" class="btn btn-default" onclick="testConnect()">测试</button>
@@ -264,7 +286,7 @@
                             <th class="text-center">${car.port}</th>
                             <th class="text-center">${car.status}</th>
                             <th class="text-center">
-                                <button type="button" class="btn btn-link"><a href="${pageContext.request.contextPath}/car/car-${car.carID}-test">详细信息</a></button>
+                                <button type="button" class="btn btn-link"><a href="${pageContext.request.contextPath}/car/carInfo-${car.carID}">详细信息</a></button>
                             </th>
                         </tr>
                     </c:forEach>

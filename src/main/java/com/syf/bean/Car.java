@@ -24,6 +24,92 @@ public class Car extends BasePO{
     @Column(name = "port")
     private int port;
 
+    @Column(name = "x")
+    private float x;
+
+    @Column(name = "y")
+    private float y;
+
+    @Column(name = "z")
+    private float z;
+
+    @Column(name = "ax")
+    private float ax;
+
+    @Column(name = "ay")
+    private float ay;
+
+    @Column(name = "az")
+    private float az;
+
+    @Column(name = "aw")
+    private float aw;
+
+    public Car(){
+
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public float getZ() {
+        return z;
+    }
+
+    public void setZ(float z) {
+        this.z = z;
+    }
+
+    public float getAx() {
+        return ax;
+    }
+
+    public void setAx(float ax) {
+        this.ax = ax;
+    }
+
+    public float getAy() {
+        return ay;
+    }
+
+    public void setAy(float ay) {
+        this.ay = ay;
+    }
+
+    public float getAz() {
+        return az;
+    }
+
+    public void setAz(float az) {
+        this.az = az;
+    }
+
+    public float getAw() {
+        return aw;
+    }
+
+    public void setAw(float aw) {
+        this.aw = aw;
+    }
+
+    public Car(String ip, int port){
+        this.ip = ip;
+        this.port = port;
+    }
+
     public int getCarID() {
         return carID;
     }
@@ -54,5 +140,18 @@ public class Car extends BasePO{
 
     public void setPort(int port) {
         this.port = port;
+    }
+
+    public void setLocation(float x, float y, float z){
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    public void setPose(float ax, float ay, float az, float aw){
+        this.ax = ax;
+        this.ay = ay;
+        this.az = az;
+        this.aw = aw;
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.Socket;
@@ -33,12 +34,27 @@ public class CarController {
     }
 
     @RequestMapping(value = "/addCar.do", method = RequestMethod.POST)
-    public void addCarDo(@RequestParam("ip") String ip, @RequestParam("port") int port,
-                         HttpServletResponse response){
+    public void addCarDo(HttpServletRequest request, HttpServletResponse response){
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!");
+        String ip = request.getParameter("ip");
+        System.out.println(ip);
+        int port = Integer.valueOf(request.getParameter("port"));
+        System.out.println(port);
         if(carService.isExist(ip))
             return ;
         try{
-            carService.save(ip, port);
+            float x = Float.valueOf(request.getParameter("x"));
+            float y = Float.valueOf(request.getParameter("y"));
+            float z = Float.valueOf(request.getParameter("z"));
+            float ax = Float.valueOf(request.getParameter("ax"));
+            float ay = Float.valueOf(request.getParameter("ay"));
+            float az = Float.valueOf(request.getParameter("az"));
+            float aw = Float.valueOf(request.getParameter("aw"));
+            Car car = new Car(ip, port);
+            car.setLocation(x, y, z);
+            car.setPose(ax, ay, az, aw);
+            carService.save(car);
+            System.out.println(car.toString());
             response.getWriter().print("{\"success\":true}");
             response.getWriter().flush();
             response.getWriter().close();

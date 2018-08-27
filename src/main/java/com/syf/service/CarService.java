@@ -56,9 +56,13 @@ public class CarService {
         car.setStatus(0);
         car.setPort(port);
         car.setIp(ip);
-
         carDao.addCar(car);
     }
+
+    public void save(Car car){
+        carDao.addCar(car);
+    }
+
 
     public List<Car> getAllCar(){
         return carDao.getAllcar();

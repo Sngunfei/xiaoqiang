@@ -176,10 +176,10 @@
                             <div class="modal-body">
                                 <form class="form-horizontal" role="form">
                                     <div class="form-group">
-                                        <label for="user" class="col-sm-3 control-label">用户</label>
+                                        <label for="user" class="col-sm-3 control-label">订单号</label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" id="user" name="user" value=""
-                                                   placeholder="请输入顾客账户">
+                                                   placeholder="请输入订单编号">
                                         </div>
                                     </div>
 
@@ -187,7 +187,7 @@
                                         <label for="address" class="col-sm-3 control-label">地址</label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" name="address" value="" id="address"
-                                                   placeholder="地址">
+                                                   placeholder="请输入收货地址">
                                         </div>
                                     </div>
 
@@ -196,7 +196,6 @@
                                         <div class="col-sm-9">
                                 <textarea  class="form-control"  name="remark" id="remark"
                                            placeholder="备注信息">
-
                                 </textarea>
                                         </div>
                                     </div>
@@ -232,8 +231,8 @@
                     <c:forEach items="${tasks}" var="task" varStatus="loop">
                         <tr>
                             <th class="text-center">${task.id}</th>
-                            <th class="text-center">${task.userID}</th>
-                            <th class="text-center">${task.destination}</th>
+                            <th class="text-center">${accounts[loop.count-1]}</th>
+                            <th class="text-center">${places[loop.count-1]}</th>
                             <th class="text-center">${task.cp}</th>
                             <th class="text-center">${task.startTime}</th>
                             <th class="text-center">${task.finishTime}</th>

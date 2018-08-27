@@ -6,6 +6,8 @@ import com.syf.service.TaskService;
 import com.syf.service.UserService;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.Wrapper;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,8 +87,16 @@ public class TaskController {
         ModelAndView mav = new ModelAndView("taskManage");
         List<Task> tasks = taskService.getAllTask();
         int[] info = taskService.getTaskNumInfo();
-        mav.addObject("tasks", tasks);
+        String[] accounts = new String[tasks.size()];
+        String[] places = new String[tasks.size()];
+        for(int i=0; i< tasks.size(); i++){
+            accounts[i] = userService.getAccountById(tasks.get(i).getUserID());
+            places[i] = placeService.getDescripById(tasks.get(i).getDestination());
+        }
+        mav.addObject("accounts", accounts);
+        mav.addObject("places", places);
         mav.addObject("info", info);
+        mav.addObject("tasks", tasks);
         return mav;
     }
 

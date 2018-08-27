@@ -134,7 +134,6 @@ public class CarDao {
         }finally {
             session.close();
         }
-
         return car;
     }
 }
