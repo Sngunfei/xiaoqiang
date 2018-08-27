@@ -79,11 +79,20 @@
         return false;
     }
 
-    // $(function () { $('#addUserModal').on('hide.bs.modal', function () {
-    //     // 关闭时清空edit状态为add
-    //     location.reload();
-    // })
-    // });
+    function statusTranslateToString(status){
+        if(1 === status) {
+            return "正在运送中"
+        }
+        if(0 === status){
+            return "已就绪"
+        }
+        if(2 === status){
+            return "已完成"
+        }
+        if(3 === status){
+            return "失败"
+        }
+    }
 </script>
 
 <body>
@@ -245,7 +254,14 @@
                             <th class="text-center">顺丰快递</th>
                             <th class="text-center">${task.startTime}</th>
                             <th class="text-center">${task.finishTime}</th>
-                            <th class="text-center">${task.status}</th>
+                            <th class="text-center">
+                                <c:choose>
+                                    <c:when test="${task.status==0}">已就绪</c:when>
+                                    <c:when test="${task.status==1}">正在配送</c:when>
+                                    <c:when test="${task.status==2}">已完成</c:when>
+                                    <c:when test="${task.status==3}">失败</c:when>
+                                </c:choose>
+                            </th>
                             <th class="text-center">
                                 <button type="button" class="btn btn-link"><a href="${pageContext.request.contextPath}/task/task${task.id}">详细信息</a></button>
                             </th>

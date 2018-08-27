@@ -47,7 +47,7 @@
 
                 success:function()
                 {
-                    alert("添加成功");
+                    alert("开始运行");
                     location.reload();
                 },
                 error:function()
@@ -60,7 +60,6 @@
         return false;
     }
 </script>
-
 
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">

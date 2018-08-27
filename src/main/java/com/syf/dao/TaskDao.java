@@ -76,7 +76,6 @@ public class TaskDao {
         Session session = sf.getCurrentSession();
         Transaction transaction = null;
         List tasks = null;
-
         try{
             transaction = session.beginTransaction();
             Query query = session.createQuery("from Task");
@@ -89,7 +88,6 @@ public class TaskDao {
         }finally {
             session.close();
         }
-
         return tasks;
     }
 
@@ -118,12 +116,8 @@ public class TaskDao {
 
         try{
             transaction = session.beginTransaction();
-//            Query query = session.createQuery("delete from Task where id = ?");
-//            query.setParameter(0, taskID);
-//            query.executeUpdate();
             Task task = session.load(Task.class, taskID);
             session.delete(task);
-
             transaction.commit();
         }catch (HibernateException e) {
             if (transaction != null)
@@ -138,7 +132,6 @@ public class TaskDao {
         SessionFactory sf = DB.getSessionFactory();
         Session session = sf.openSession();
         Transaction transaction = null;
-
         try{
             transaction = session.beginTransaction();
             session.saveOrUpdate(task);
@@ -162,8 +155,9 @@ public class TaskDao {
             Query query = session.createQuery("from Task where id = ?");
             query.setParameter(0, id);
             List<Task> tasks = query.list();
-            if(!tasks.isEmpty())
+            if(!tasks.isEmpty()) {
                 task = tasks.get(0);
+            }
             transaction.commit();
         }catch (HibernateException e){
             if(transaction != null)
@@ -172,7 +166,6 @@ public class TaskDao {
         }finally {
             session.close();
         }
-
         return task;
     }
 

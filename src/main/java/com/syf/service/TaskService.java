@@ -40,6 +40,24 @@ public class TaskService {
         this.userService = service3;
     }
 
+    public String statusText(int status){
+        String statusText = "";
+        switch (status){
+            case 0:
+                statusText = "已就绪";
+                break;
+            case 1:
+                statusText = "正在配送";
+                break;
+            case 2:
+                statusText = "已完成";
+                break;
+            case 3:
+                statusText = "失败";
+        }
+        return statusText;
+    }
+
     // 获取任务数量信息，主页展示
     public int[] getTaskNumInfo(){
         int[] info = new int[5];
@@ -104,7 +122,6 @@ public class TaskService {
         dao.deleteTask(id);
     }
 
-
     public void startTask(int id) throws TaskException, CarException {
         Task task = dao.getTask(id);
         if(task == null) {
@@ -131,13 +148,13 @@ public class TaskService {
 
     private void sendCmd(Task task, Car availCar){
         try {
-            System.out.println(String.format("connect to car(id: %d, ip: %s, port: %d)",availCar.getCarID(),availCar.getIp(),availCar.getPort()));
+            logger.debug(String.format("connect to car(id: %d, ip: %s, port: %d)", availCar.getCarID(), availCar.getIp(), availCar.getPort()));
             Socket socket = new Socket(availCar.getIp(),availCar.getPort());
             PrintWriter pw = new PrintWriter(socket.getOutputStream());
 
             Place destination = placeService.getPlaceById(task.getDestination());
             String loc_info = destination.getLoc();
-            System.out.println("目的地信息: " + loc_info);
+            logger.info("destination location: " + loc_info);
             pw.println(loc_info);
             pw.flush();
             logger.info("send command successfully");
