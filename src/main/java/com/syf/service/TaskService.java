@@ -20,6 +20,7 @@ import java.net.SocketAddress;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Logger;
 
 @Service
@@ -56,6 +57,20 @@ public class TaskService {
                 statusText = "失败";
         }
         return statusText;
+    }
+
+    public String randomCp(){
+        Random random = new Random(System.currentTimeMillis());
+        int feed = random.nextInt(6537);
+        switch (feed % 6){
+            case 0: return "顺丰";
+            case 1: return "中通";
+            case 2: return "圆通";
+            case 3: return "EMS";
+            case 4: return "申通";
+            case 5: return "韵达";
+        }
+        return "EMS";
     }
 
     // 获取任务数量信息，主页展示

@@ -225,8 +225,8 @@
                         <th class="text-center">Z坐标</th>
                         <th class="text-center">X角度</th>
                         <th class="text-center">Y角度</th>
-                        <%--<th class="text-center">Z角度</th>--%>
-                        <%--<th class="text-center">W角度</th>--%>
+                        <th class="text-center">Z角度</th>
+                        <th class="text-center">W角度</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -238,8 +238,8 @@
                             <th class="text-center">${place.locZ}</th>
                             <th class="text-center">${place.angX}</th>
                             <th class="text-center">${place.angY}</th>
-                            <%--<th class="text-center">${place.angZ}</th>--%>
-                            <%--<th class="text-center">${place.angW}</th>--%>
+                            <th class="text-center">${place.angZ}</th>
+                            <th class="text-center">${place.angW}</th>
                         </tr>
                     </c:forEach>
                     </tbody>

@@ -43,6 +43,7 @@ public class TaskController {
             task.setDestination(placeService.addrToId(place));
             task.setStatus(0);
             task.setStartTime(new Date(System.currentTimeMillis()));
+            task.setCp(taskService.randomCp());
             taskService.addTask(task);
             String json = "{\"success\":true}";
             try{

@@ -78,7 +78,7 @@ public class TaskDao {
         List tasks = null;
         try{
             transaction = session.beginTransaction();
-            Query query = session.createQuery("from Task");
+            Query query = session.createQuery("from Task order by taskID desc");
             tasks = query.list();
             transaction.commit();
         }catch (HibernateException e){

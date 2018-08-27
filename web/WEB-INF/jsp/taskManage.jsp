@@ -29,8 +29,6 @@
 </head>
 
 <script>
-    // 提交表单
-    import * as $ from "./jquery";
 
     function check_form()
     {
@@ -77,21 +75,6 @@
             });
 
         return false;
-    }
-
-    function statusTranslateToString(status){
-        if(1 === status) {
-            return "正在运送中"
-        }
-        if(0 === status){
-            return "已就绪"
-        }
-        if(2 === status){
-            return "已完成"
-        }
-        if(3 === status){
-            return "失败"
-        }
     }
 </script>
 
@@ -251,7 +234,7 @@
                             <th class="text-center">${task.id}</th>
                             <th class="text-center">${task.userID}</th>
                             <th class="text-center">${task.destination}</th>
-                            <th class="text-center">顺丰快递</th>
+                            <th class="text-center">${task.cp}</th>
                             <th class="text-center">${task.startTime}</th>
                             <th class="text-center">${task.finishTime}</th>
                             <th class="text-center">

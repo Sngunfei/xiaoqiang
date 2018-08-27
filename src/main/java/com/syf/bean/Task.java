@@ -30,6 +30,9 @@ public class Task extends BasePO{
     @Column(name = "finishTime")
     private Date finishTime;
 
+    @Column(name = "cooperation")
+    private String cp;
+
     /*
         - status
             0 : ready: 只是存在数据库里，尚未开始
@@ -106,6 +109,14 @@ public class Task extends BasePO{
 
     public int getStatus() {
         return status;
+    }
+
+    public String getCp() {
+        return cp;
+    }
+
+    public void setCp(String cp) {
+        this.cp = cp;
     }
 
     public void setStatus(int status) {
