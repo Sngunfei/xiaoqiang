@@ -79,11 +79,12 @@
             </div>
 
             <div>
-                <h4>小车编号：${car.carID}</h4>
-                <h4>通信地址：${car.ip}:${car.port}</h4>
-                <h4>状态：${car.status}</h4>
-                <h4>当前坐标:(${car.x},  ${car.y},  ${car.z})</h4>
-                <h4>当前位姿:(${car.ax},  ${car.ay},  ${car.az},  ${car.aw})</h4>
+                <h4>小车编号： ${car.carID}</h4>
+                <h4>通信地址： ${car.ip}:${car.port}</h4>
+                <h4>状态： ${car.status}</h4>
+                <h4>当前坐标: (${car.x},  ${car.y},  ${car.z})</h4>
+                <h4>当前位姿: (${car.ax},  ${car.ay},  ${car.az},  ${car.aw})</h4>
+                <h4>型号: ${car.model}</h4>
             </div>
 
             <%--<div class="row">--%>

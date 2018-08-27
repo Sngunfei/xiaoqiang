@@ -114,15 +114,22 @@
 
             <div>
                 <h4>任务ID：${task.id}</h4>
-                <h4>状态：${task.status}</h4>
-                <h4>收货地址：${task.destination}</h4>
-                <h4>收货人ID：${task.userID}</h4>
+                <h4>状态：<c:choose>
+                            <c:when test="${task.status==0}">已就绪</c:when>
+                            <c:when test="${task.status==1}">正在配送</c:when>
+                            <c:when test="${task.status==2}">已完成</c:when>
+                            <c:when test="${task.status==3}">失败</c:when>
+                         </c:choose>
+                </h4>
+                <h4>收货地址：${place}</h4>
+                <h4>收货人ID：${account}</h4>
                 <h4>开始时间：${task.startTime}</h4>
                 <h4>运送时间：${task.deliverTime}</h4>
                 <h4>结束时间：${task.finishTime}</h4>
             </div>
             <input type="hidden" name="taskID" id="taskID" value="${task.id}">
-            <button type="button" class="btn btn-link" onclick="startTask()">Run!</button>
+            <button class="btn btn-primary btn-sm" onclick="startTask()">Run!</button>
+
         </div>
     </div>
 </div>

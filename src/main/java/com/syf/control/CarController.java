@@ -50,9 +50,11 @@ public class CarController {
             float ay = Float.valueOf(request.getParameter("ay"));
             float az = Float.valueOf(request.getParameter("az"));
             float aw = Float.valueOf(request.getParameter("aw"));
+            String model = request.getParameter("model");
             Car car = new Car(ip, port);
             car.setLocation(x, y, z);
             car.setPose(ax, ay, az, aw);
+            car.setModel(model);
             carService.save(car);
             System.out.println(car.toString());
             response.getWriter().print("{\"success\":true}");

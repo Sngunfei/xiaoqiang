@@ -78,7 +78,8 @@ public class TaskController {
         ModelAndView mav = new ModelAndView("taskInfo");
         Task task = taskService.getTask(taskId);
         mav.addObject("task", task);
-        System.out.println(task.getId()+" "+task.getUserID());
+        mav.addObject("account", userService.getAccountById(task.getUserID()));
+        mav.addObject("place", placeService.getDescripById(task.getDestination()));
         return mav;
     }
 

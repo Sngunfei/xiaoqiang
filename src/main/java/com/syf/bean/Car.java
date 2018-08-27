@@ -45,6 +45,9 @@ public class Car extends BasePO{
     @Column(name = "aw")
     private float aw;
 
+    @Column(name = "model")
+    private String model;
+
     public Car(){
 
     }
@@ -91,6 +94,14 @@ public class Car extends BasePO{
 
     public float getAz() {
         return az;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public void setAz(float az) {

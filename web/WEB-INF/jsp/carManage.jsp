@@ -33,7 +33,7 @@
         let loc = loc1.split(",", 3);
         let pose1 = $.trim($('#pose').val());
         let pose = pose1.split(",", 4);
-
+        let model = $.trim($('#model').val());
         if(!ip) {
             alert('IP地址不能为空！');
             return false;
@@ -50,7 +50,8 @@
         $.ajax(
             {
                 url: '${pageContext.request.contextPath}/car/addCar.do',
-                data:{"ip":ip, "port": port, "x": loc[0], "y": loc[1], "z": loc[2],
+                data:{"ip":ip, "port": port, "model": model,
+                        "x": loc[0], "y": loc[1], "z": loc[2],
                         "ax": pose[0], "ay": pose[1], "az": pose[2], "aw": pose[3]},
                 type: "post",
                 beforeSend:function()
@@ -148,7 +149,7 @@
 </nav>
 
 <div class="container-fluid">
-    1<div class="row">
+    <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li><a href="${pageContext.request.contextPath}/task/taskManage">任务管理 <span class="sr-only">(current)</span></a></li>
@@ -178,14 +179,14 @@
                 </div>
                 <div class="col-xs-6 col-sm-3 placeholder">
                     <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>正在进行</h4>
+                    <h4>正在路上</h4>
                     <span class="text-muted">${carInfo[2]}</span>
                 </div>
-                <div class="col-xs-6 col-sm-3 placeholder">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>正在返回</h4>
-                    <span class="text-muted">${carInfo[3]}</span>
-                </div>
+                <%--<div class="col-xs-6 col-sm-3 placeholder">--%>
+                    <%--<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">--%>
+                    <%--<h4>正在返回</h4>--%>
+                    <%--<span class="text-muted">${carInfo[3]}</span>--%>
+                <%--</div>--%>
                 <div class="col-xs-6 col-sm-3 placeholder">
                     <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
                     <h4>故障车辆</h4>
@@ -232,11 +233,18 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="port" class="col-sm-3 control-label">小车型号</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="model" value="" id="model"
-                                                   placeholder="小车型号">
-                                        </div>
+                                        <label for="port" class="col-sm-3 control-label">小车型号 </label>
+                                        <%--<div class="col-sm-9">--%>
+                                            <%--<input type="text" class="form-control" name="model" value="" id="model"--%>
+                                                   <%--placeholder="小车型号">--%>
+                                        <%--</div>--%>
+                                        <select name="model" id="model" style="width: 200px; height: 40px">
+                                            <option value="xiaoqiang1">xiaoqiang1</option>
+                                            <option value="xiaoqiang2">xiaoqiang2</option>
+                                            <option value="xiaoqiang3">xiaoqiang3</option>
+                                            <option value="xiaoqiang4">xiaoqiang4</option>
+                                            <option value="xiaoqiang5">xiaoqiang5</option>
+                                        </select>
                                     </div>
 
                                     <div class="form-group">
