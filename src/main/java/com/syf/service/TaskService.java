@@ -121,12 +121,8 @@ public class TaskService {
         task.setStatus(1);
         availCar.setStatus(1);
         task.setDeliverTime(new Date(System.currentTimeMillis()));
-        availCar.setStatus(1);
 
         updateTask(task);             // 更新任务和小车进度
-        carService.updateCar(availCar);
-
-        updateTask(task);
         carService.updateCar(availCar);
 
         // send string command to car.
@@ -136,17 +132,15 @@ public class TaskService {
     private void sendCmd(Task task, Car availCar){
         try {
             Socket socket = new Socket(availCar.getIp(),availCar.getPort());
-            logger.info(String.format("connect to car(id: %d, ip: %s, port: %d)",availCar.getCarID(),availCar.getIp(),availCar.getPort()));
+            System.out.println(String.format("connect to car(id: %d, ip: %s, port: %d)",availCar.getCarID(),availCar.getIp(),availCar.getPort()));
             PrintWriter pw = new PrintWriter(socket.getOutputStream());
 
             Place destination = placeService.getPlaceById(task.getDestination());
             String loc_info = destination.getLoc();
-
+            System.out.println("目的地信息: " + loc_info);
             pw.println(loc_info);
             pw.flush();
-
             logger.info("send command successfully");
-
             pw.close();
             socket.close();
         } catch (IOException e) {

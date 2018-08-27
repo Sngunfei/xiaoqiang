@@ -116,6 +116,6 @@ public class Place extends BasePO {
     }
 
     public String getLoc(){
-        return String.format("%f %f %f %f %f %f %f",locX,locY,locZ,angX,angY,angZ,angW);
+        return String.format("%f,%f,%f,%f,%f,%f,%f",locX,locY,locZ,angX,angY,angZ,angW);
     }
 }
