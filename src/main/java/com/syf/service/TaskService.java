@@ -126,7 +126,7 @@ public class TaskService {
         carService.updateCar(availCar);
 
         // send string command to car.
-        sendCmd(task, availCar);
+        new Thread(() -> sendCmd(task, availCar)).start();
     }
 
     private void sendCmd(Task task, Car availCar){

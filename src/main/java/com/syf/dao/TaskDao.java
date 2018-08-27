@@ -3,19 +3,14 @@ package com.syf.dao;
 import com.syf.bean.Task;
 import com.syf.bean.User;
 import org.apache.log4j.Logger;
-import org.apache.log4j.spi.LoggerFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.Tuple;
-
 import java.util.List;
-import java.util.Set;
+
 
 @Repository
 public class TaskDao {
@@ -182,24 +177,24 @@ public class TaskDao {
     }
 
 
-    public long updateTaskInfo(int taskId, String message, long time){
-        JedisPool jedisPool = DB.getJedisPool();
-        long ans = 0;
-        try(Jedis jedis = jedisPool.getResource()){
-            ans = jedis.zadd(DB.SSDBKeyForUserTaskInfo(taskId), time, message);
-            logger.info("ssdb insert new task info success.");
-        }catch (Exception e){
-            logger.error("ssdb insert new task info failed.", e);
-            e.printStackTrace();
-        }
-        return ans;
-    }
-
-    public Set<Tuple> getTaskProcess(int taskId){
-        JedisPool jedisPool = DB.getJedisPool();
-        Jedis jedis = jedisPool.getResource();
-        Set<Tuple> infos = jedis.zrevrangeWithScores(DB.SSDBKeyForUserTaskInfo(taskId), 0, Integer.MAX_VALUE);
-        logger.info("get task info from ssdb.");
-        return infos;
-    }
+//    public long updateTaskInfo(int taskId, String message, long time){
+//        JedisPool jedisPool = DB.getJedisPool();
+//        long ans = 0;
+//        try(Jedis jedis = jedisPool.getResource()){
+//            ans = jedis.zadd(DB.SSDBKeyForUserTaskInfo(taskId), time, message);
+//            logger.info("ssdb insert new task info success.");
+//        }catch (Exception e){
+//            logger.error("ssdb insert new task info failed.", e);
+//            e.printStackTrace();
+//        }
+//        return ans;
+//    }
+//
+//    public Set<Tuple> getTaskProcess(int taskId){
+//        JedisPool jedisPool = DB.getJedisPool();
+//        Jedis jedis = jedisPool.getResource();
+//        Set<Tuple> infos = jedis.zrevrangeWithScores(DB.SSDBKeyForUserTaskInfo(taskId), 0, Integer.MAX_VALUE);
+//        logger.info("get task info from ssdb.");
+//        return infos;
+//    }
 }

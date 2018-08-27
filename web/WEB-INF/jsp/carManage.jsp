@@ -25,6 +25,8 @@
 
 <script>
     // 提交表单
+    import * as $ from "./jquery";
+
     function check_form()
     {
         var ip = $.trim($('#ip').val());
@@ -87,7 +89,7 @@
             return false;
         }
 
-        var form_data = $('#form_data').serialize();
+        let form_data = $('#form_data').serialize();
 
         $.ajax(
             {
