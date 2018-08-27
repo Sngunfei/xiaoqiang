@@ -30,10 +30,12 @@
 
 <script>
     // 提交表单
+    import * as $ from "./jquery";
+
     function check_form()
     {
-        var user = $.trim($('#user').val());
-        var address = $.trim($('#address').val());
+        let user = $.trim($('#user').val());
+        let address = $.trim($('#address').val());
 
         if(!user)
         {
