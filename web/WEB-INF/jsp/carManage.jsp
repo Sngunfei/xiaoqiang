@@ -168,21 +168,21 @@
             <h1 class="page-header">Dashboard</h1>
             <div class="row placeholders">
                 <div class="col-xs-6 col-sm-3 placeholder">
-                    <a href = "${pageContext.request.contextPath}/task/doing">
+                    <a href = "${pageContext.request.contextPath}/car/carClass2">
                         <img src="../../resources/icon/carDoc.png" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
                     </a>
                     <h4>所有车辆</h4>
                     <h5><span class="text-muted">${carInfo[0]}</span></h5>
                 </div>
                 <div class="col-xs-6 col-sm-3 placeholder">
-                    <a href = "${pageContext.request.contextPath}/task/doing">
+                    <a href = "${pageContext.request.contextPath}/car/carClass0">
                         <img src="../../resources/icon/car.png" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
                     </a>
                     <h4>空闲车辆</h4>
                     <h5><span class="text-muted">${carInfo[1]}</span></h5>
                 </div>
                 <div class="col-xs-6 col-sm-3 placeholder">
-                    <a href = "${pageContext.request.contextPath}/task/doing">
+                    <a href = "${pageContext.request.contextPath}/car/carClass1">
                         <img src="../../resources/icon/delivery.png" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
                     </a>
                     <h4>正在路上</h4>
@@ -194,7 +194,7 @@
                     <%--<span class="text-muted">${carInfo[3]}</span>--%>
                 <%--</div>--%>
                 <div class="col-xs-6 col-sm-3 placeholder">
-                    <a href = "${pageContext.request.contextPath}/task/doing">
+                    <a href = "${pageContext.request.contextPath}/car/carClass3">
                         <img src="../../resources/icon/fix.png" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
                     </a>
                     <h4>故障信息</h4>
@@ -299,7 +299,13 @@
                             <th class="text-center">${car.carID}</th>
                             <th class="text-center">${car.ip}</th>
                             <th class="text-center">${car.port}</th>
-                            <th class="text-center">${car.status}</th>
+                            <th class="text-center">
+                                <c:choose>
+                                    <c:when test="${car.status==0}">空闲</c:when>
+                                    <c:when test="${car.status==1}">配送中</c:when>
+                                    <c:when test="${car.status==3}">故障</c:when>
+                                </c:choose>
+                            </th>
                             <th class="text-center">
                                 <button type="button" class="btn btn-link"><a href="${pageContext.request.contextPath}/car/carInfo-${car.carID}">详细信息</a></button>
                             </th>

@@ -124,28 +124,28 @@
             <h1 class="page-header">Dashboard</h1>
             <div class="row placeholders">
                 <div class="col-xs-6 col-sm-3 placeholder">
-                    <a href="${pageContext.request.contextPath}/task/ready">
+                    <a href="${pageContext.request.contextPath}/task/taskClass0">
                     <img src= "../../resources/icon/waiting.png" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
                     </a>
                     <h4>等待配送</h4>
                     <h5><span class="text-muted">${info[1]}</span></h5>
                 </div>
                 <div class="col-xs-6 col-sm-3 placeholder">
-                    <a href = "${pageContext.request.contextPath}/task/done">
+                    <a href = "${pageContext.request.contextPath}/task/taskClass2">
                     <img src="../../resources/icon/done.png" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
                     </a>
                     <h4>已经完成</h4>
                     <h5><span class="text-muted">${info[3]}</span></h5>
                 </div>
                 <div class="col-xs-6 col-sm-3 placeholder">
-                    <a href = "${pageContext.request.contextPath}/task/doing">
+                    <a href = "${pageContext.request.contextPath}/task/taskClass1">
                         <img src="../../resources/icon/doing.png" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
                     </a>
                     <h4>正在配送</h4>
                     <h5><span class="text-muted">${info[2]}</span></h5>
                 </div>
                 <div class="col-xs-6 col-sm-3 placeholder">
-                    <a href = "${pageContext.request.contextPath}/task/error">
+                    <a href = "${pageContext.request.contextPath}/task/taskClass3">
                     <img src="../../resources/icon/deliverError.png" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
                     </a>
                     <h4>配送失败</h4>

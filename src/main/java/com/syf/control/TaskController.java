@@ -1,5 +1,6 @@
 package com.syf.control;
 
+import com.syf.Const.Parameters;
 import com.syf.bean.Task;
 import com.syf.service.PlaceService;
 import com.syf.service.TaskService;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -107,6 +109,23 @@ public class TaskController {
         List<Task> tasks = taskService.getTaskByAccount(account);
         mav.addObject("tasks", tasks);
         mav.setViewName("/listTaskOfUser");
+        return mav;
+    }
+
+    @RequestMapping(value = "/taskClass{status}", method = RequestMethod.GET)
+    public ModelAndView showTaskByStatus(@PathVariable int status){
+        ModelAndView mav = new ModelAndView("/showTaskByStatus");
+        List<Task> tasks = taskService.getTaskByStatus(status);
+        mav.addObject("tasks", tasks);
+        mav.addObject("status", status);
+        String[] accounts = new String[tasks.size()];
+        String[] places = new String[tasks.size()];
+        for(int i=0; i< tasks.size(); i++){
+            accounts[i] = userService.getAccountById(tasks.get(i).getUserID());
+            places[i] = placeService.getDescripById(tasks.get(i).getDestination());
+        }
+        mav.addObject("accounts", accounts);
+        mav.addObject("places", places);
         return mav;
     }
     // 利用ssdb存储任务进度

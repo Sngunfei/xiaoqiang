@@ -14,6 +14,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -101,5 +102,16 @@ public class CarService {
 
     public Car getCarById(int carId){
         return carDao.getCarById(carId);
+    }
+
+    public List<Car> getCarByStatus(int status){
+        List<Car> allCars = getAllCar();
+        List<Car> cars = new ArrayList<>();
+        for(Car car: allCars){
+            if(car.getStatus() == status){
+                cars.add(car);
+            }
+        }
+        return cars;
     }
 }

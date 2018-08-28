@@ -1,5 +1,6 @@
 package com.syf.service;
 
+import com.syf.Const.Parameters;
 import com.syf.XQExceptions.CarException;
 import com.syf.XQExceptions.TaskException;
 import com.syf.bean.Car;
@@ -109,6 +110,26 @@ public class TaskService {
         return dao.getTaskByAccount(account);
     }
 
+    private boolean checkStatus(int status){
+        return status == Parameters.Status_Done ||
+                status == Parameters.Status_Fail ||
+                status == Parameters.Status_Ready ||
+                status == Parameters.Status_Running;
+    }
+
+    public List<Task> getTaskByStatus(int taskStatus){
+        List<Task> allTasks = getAllTask();
+        List<Task> tasks = new ArrayList<>();
+        if(checkStatus(taskStatus)) {
+            for (Task task : allTasks) {
+                if (taskStatus == task.getStatus()) {
+                    tasks.add(task);
+                }
+            }
+        }
+        return tasks;
+    }
+
     public List<Task> getTaskById(int userId){
         return dao.getTasksById(userId);
     }
@@ -141,15 +162,23 @@ public class TaskService {
         if(task.getStatus() > 0){
             throw new TaskException("The task already started.");
         }
-        Car availCar = carService.getAvailableCar();
-        if(availCar == null){
-            throw new CarException("There is no cars available now.");
+        Car availCar;
+        if(task.isAssign())
+            availCar = carService.getCarById(task.getCarID());
+        else {
+            availCar = carService.getAvailableCar();
+            task.setCarID(availCar.getCarID());
         }
-        task.setCarID(availCar.getCarID());
+        if(availCar == null){
+            logger.error("Task start failed: There is no cars available now!");
+            throw new CarException("There is no cars available now.");
+        }else if(availCar.getStatus() != Parameters.Status_Ready){
+            logger.error("Task start failed: The car assigned by task is not ready!");
+            throw new CarException("The car is not ready");
+        }
         task.setStatus(1);
         availCar.setStatus(1);
         task.setDeliverTime(new Date(System.currentTimeMillis()));
-
         updateTask(task);             // 更新任务和小车进度
         carService.updateCar(availCar);
 

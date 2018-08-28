@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.Socket;
+import java.util.List;
 
 
 @Controller
@@ -119,6 +120,19 @@ public class CarController {
             case 2: status = "正在返程"; break;
             case 3: status = "故障ing"; break;
         }
+        mav.addObject("status", status);
+        return mav;
+    }
+
+    @RequestMapping(value = "/carClass{status}", method = RequestMethod.GET)
+    public ModelAndView showCarByStatus(@PathVariable int status){
+        ModelAndView mav = new ModelAndView("showCarByStatus");
+        List<Car> cars;
+        if(status == 2)
+            cars = carService.getAllCar();
+        else
+            cars = carService.getCarByStatus(status);
+        mav.addObject("cars", cars);
         mav.addObject("status", status);
         return mav;
     }

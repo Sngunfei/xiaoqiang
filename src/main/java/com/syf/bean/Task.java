@@ -47,6 +47,13 @@ public class Task extends BasePO{
     @Column(name = "deliverTime")
     private Date deliverTime;
 
+    @Column(name = "assign")
+    private boolean assign;
+
+    public boolean isAssign(){
+        return assign;
+    }
+
     public Task() {
         this.startTime = new Date(System.currentTimeMillis());
     }
