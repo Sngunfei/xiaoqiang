@@ -1,46 +1,53 @@
 package com.syf.dao;
 
+import com.syf.biz.logger;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
-public class DB {
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
 
+class DB {
     private static SessionFactory sessionFactory;
- //   private static JedisPool jedisPool;
+    private static JedisPool jedisPool;
 
-    public static SessionFactory getSessionFactory() {
+    static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 
-//    public static JedisPool getJedisPool(){
-//        return jedisPool;
-//    }
-
+    static JedisPool getJedisPool(){ return jedisPool; }
 
     private DB() {}
 
     static {
         sessionFactory = new Configuration().configure().buildSessionFactory();
-//        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-//        jedisPoolConfig.setMaxIdle(5);
-//        jedisPoolConfig.setMaxTotal(20);
-//       // Properties ssdbProperties = new Properties();
-//        try{
-//            ssdbProperties.load(new FileReader("SSDB.properties"));
-//        }catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        }catch (IOException e){
-//            e.printStackTrace();
-//        }
-//        jedisPool = new JedisPool(jedisPoolConfig,
-//                                    ssdbProperties.getProperty("ssdb_write_ip"),
-//                                    Integer.valueOf(ssdbProperties.getProperty("ssdb_write_port")));
+        //openSSDB();
     }
 
-//    public static String SSDBKeyForUserTaskInfo(int taskId){
-//        return String.format("xiaoqiang.task.%d", taskId);
-//    }
+    private static void openSSDB(){
+        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+        jedisPoolConfig.setMaxIdle(5);
+        jedisPoolConfig.setMaxTotal(20);
+        Properties properties = new Properties();
+        try{
+            properties.load(new FileReader("ssdb.properties"));
+        }catch (FileNotFoundException e) {
+            logger.error("Can't find ssdb.properties.", e);
+            e.printStackTrace();
+        } catch (IOException e){
+            logger.error("Can't load ssdb.properties.", e);
+            e.printStackTrace();
+        }
+        jedisPool = new JedisPool(jedisPoolConfig,
+                properties.getProperty("ip"),
+                Integer.valueOf(properties.getProperty("port")));
+    }
 
-
+    static String SSDBKeyForUserTaskInfo(int taskId){
+        return String.format("xq.task.process.%d", taskId);
+    }
 }

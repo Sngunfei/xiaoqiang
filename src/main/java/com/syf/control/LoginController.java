@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class LoginController {
 
-    private static Logger logger = Logger.getLogger(LoginController.class);
-
     private final AdministerService administerService;
 
     @Autowired
@@ -31,7 +29,6 @@ public class LoginController {
         mav.setViewName("login");
         mav.addObject("errorMessage", "wrong!");
         if (dbAdmin == null) {
-            System.out.println("null!!!!!!!!!!!!!!!!!!!1");
             mav.addObject("errorMessage", "账户不存在！");
         } else if (!dbAdmin.getPassword().equals(password)) {
             mav.addObject("errorMessage", "密码不正确！");

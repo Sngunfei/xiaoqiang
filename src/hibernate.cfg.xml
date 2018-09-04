@@ -8,14 +8,14 @@
     <property name="connection.url">jdbc:mysql://localhost:3306/xq?useUnicode=true&amp;characterEncoding=UTF-8</property>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="connection.username">root</property>
-    <property name="connection.password">862344</property>
+    <property name="connection.password">123456</property>
     <!-- 显示生成的SQL语句 -->
     <property name="hibernate.show_sql">true</property>
 
     <mapping class="com.syf.bean.Administer"/>
     <mapping class="com.syf.bean.Task"/>
     <mapping class="com.syf.bean.User"/>
-    <mapping class="com.syf.bean.Place"/>
+    <mapping class="com.syf.bean.Address"/>
     <mapping class="com.syf.bean.Car"/>
     <mapping class="com.syf.bean.Box"/>
 

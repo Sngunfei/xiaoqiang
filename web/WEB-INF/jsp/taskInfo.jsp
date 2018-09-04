@@ -130,6 +130,33 @@
             <input type="hidden" name="taskID" id="taskID" value="${task.id}">
             <button class="btn btn-primary btn-sm" onclick="startTask()">Run!</button>
 
+            <div class="row">
+                <div class="form-inline">
+                    <h2 class="sub-header">配送进度</h2>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th class="text-center">坐标</th>
+                        <th class="text-center">位姿</th>
+                        <th class="text-center">速度</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${pass}" var="v" varStatus="loop">
+                        <tr>
+                            <th class="text-center">${v[0]}</th>
+                            <th class="text-center">${v[1]}</th>
+                            <th class="text-center">${v[2]}</th>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 </div>

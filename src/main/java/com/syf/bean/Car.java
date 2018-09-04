@@ -1,5 +1,6 @@
 package com.syf.bean;
 
+import com.syf.Const.Status;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
 
@@ -12,17 +13,15 @@ public class Car extends BasePO{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "carID")
-    private int carID;
+    @Column(name = "id")
+    private int id;
 
     @Column(name = "status", nullable = false)
-    private int status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @Column(name = "ip")
     private String ip;
-
-    @Column(name = "port")
-    private int port;
 
     @Column(name = "x")
     private float x;
@@ -48,8 +47,31 @@ public class Car extends BasePO{
     @Column(name = "model")
     private String model;
 
-    public Car(){
+    @Column(name = "curTask")
+    private int curTask;
 
+    public void setCurTask(int taskID) {
+        this.curTask = taskID;
+    }
+
+    public int getCurTask(){
+        if(Status.Ready.equals(status))
+            return curTask;
+        else
+            return -1;
+    }
+
+    public Car(){
+        this.status = Status.Ready;
+        this.setPose(0, 0, 0, 0);
+        this.setLocation(0, 0, 0);
+    }
+
+    public Car(String ip){
+        this.ip = ip;
+        this.status = Status.Ready;
+        this.setPose(0, 0, 0, 0);
+        this.setLocation(0, 0, 0);
     }
 
     public float getX() {
@@ -116,24 +138,15 @@ public class Car extends BasePO{
         this.aw = aw;
     }
 
-    public Car(String ip, int port){
-        this.ip = ip;
-        this.port = port;
+    public int getID() {
+        return id;
     }
 
-    public int getCarID() {
-        return carID;
-    }
-
-    public void setCarID(int carID) {
-        this.carID = carID;
-    }
-
-    public int getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
@@ -143,14 +156,6 @@ public class Car extends BasePO{
 
     public void setIp(String ip) {
         this.ip = ip;
-    }
-
-    public int getPort() {
-        return port;
-    }
-
-    public void setPort(int port) {
-        this.port = port;
     }
 
     public void setLocation(float x, float y, float z){
@@ -164,5 +169,21 @@ public class Car extends BasePO{
         this.ay = ay;
         this.az = az;
         this.aw = aw;
+    }
+
+    public boolean isRunning(){
+        return Status.Running.equals(this.status);
+    }
+
+    public boolean isReady(){
+        return Status.Ready.equals(this.status);
+    }
+
+    public boolean isDone(){
+        return Status.Done.equals(this.status);
+    }
+
+    public boolean isFail(){
+        return Status.Fail.equals(this.status);
     }
 }

@@ -23,37 +23,31 @@
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 
 <script>
 
-    function check_form()
+    function addTask()
     {
         let user = $.trim($('#user').val());
         let address = $.trim($('#address').val());
-
-        if(!user)
-        {
+        if(!user) {
             alert('用户不能为空！');
             return false;
         }
-
-        if(!address)
-        {
+        if(!address) {
             alert('地址不能为空！');
             return false;
         }
-
-        var form_data = $('#form_data').serialize();
 
         $.ajax(
             {
                 url: '${pageContext.request.contextPath}/task/addTask.do',
                 data:{"user":user, "address": address},
                 type: "post",
+                dataType: "json",
+                async: false,
                 beforeSend:function()
                 {
                     $("#tip").html("<span style='color:blue'>正在处理...</span>");
@@ -61,19 +55,18 @@
                 },
                 success:function()
                 {
-                    alert("添加成功");
+                    alert("任务添加成功");
                     location.reload();
                 },
                 error:function()
                 {
-                    alert('用户/地址不存在，请先添加');
+                    alert('任务添加失败, [hint]: 用户/地址不存在.');
                 },
                 complete:function()
                 {
                     $('#acting_tips').hide();
                 }
             });
-
         return false;
     }
 </script>
@@ -124,28 +117,28 @@
             <h1 class="page-header">Dashboard</h1>
             <div class="row placeholders">
                 <div class="col-xs-6 col-sm-3 placeholder">
-                    <a href="${pageContext.request.contextPath}/task/taskClass0">
+                    <a href="${pageContext.request.contextPath}/task/task-ready">
                     <img src= "../../resources/icon/waiting.png" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
                     </a>
                     <h4>等待配送</h4>
                     <h5><span class="text-muted">${info[1]}</span></h5>
                 </div>
                 <div class="col-xs-6 col-sm-3 placeholder">
-                    <a href = "${pageContext.request.contextPath}/task/taskClass2">
+                    <a href = "${pageContext.request.contextPath}/task/task-done">
                     <img src="../../resources/icon/done.png" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
                     </a>
                     <h4>已经完成</h4>
                     <h5><span class="text-muted">${info[3]}</span></h5>
                 </div>
                 <div class="col-xs-6 col-sm-3 placeholder">
-                    <a href = "${pageContext.request.contextPath}/task/taskClass1">
+                    <a href = "${pageContext.request.contextPath}/task/task-running">
                         <img src="../../resources/icon/doing.png" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
                     </a>
                     <h4>正在配送</h4>
                     <h5><span class="text-muted">${info[2]}</span></h5>
                 </div>
                 <div class="col-xs-6 col-sm-3 placeholder">
-                    <a href = "${pageContext.request.contextPath}/task/taskClass3">
+                    <a href = "${pageContext.request.contextPath}/task/task-error">
                     <img src="../../resources/icon/deliverError.png" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
                     </a>
                     <h4>配送失败</h4>
@@ -157,11 +150,14 @@
                 <div class="form-inline">
                     <h2 class="sub-header">所有任务</h2>
                     <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addTask">新建任务</button>
+                    <button class="btn btn-primary btn-sm">
+                        <a href="${pageContext.request.contextPath}/task/refresh" style="color: #dddddd">全部重置</a>
+                    </button>
                 </div>
             </div>
 
             <!-- 模态框（Modal） -->
-            <form method="post" action="" class="form-horizontal" role="form" id="form_data" onsubmit="return check_form()" style="margin: 20px;">
+            <form method="post" action="" class="form-horizontal" role="form" id="form_data" onsubmit="return addTask()" style="margin: 20px;">
                 <div class="modal fade" id="addTask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">

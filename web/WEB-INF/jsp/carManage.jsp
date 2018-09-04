@@ -16,16 +16,11 @@
     <!-- Custom styles for this template -->
     <link href="../../resources/css/dashboard.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <!--<![endif]-->
 </head>
 
 <script>
     // 提交表单
-    function check_form()
+    function addCar()
     {
         let ip = $.trim($('#ip').val());
         let port = $.trim($('#port').val());
@@ -46,7 +41,6 @@
             alert('初始信息不足！');
             return false;
         }
-
         $.ajax(
             {
                 url: '${pageContext.request.contextPath}/car/addCar.do',
@@ -54,6 +48,8 @@
                         "x": loc[0], "y": loc[1], "z": loc[2],
                         "ax": pose[0], "ay": pose[1], "az": pose[2], "aw": pose[3]},
                 type: "post",
+                dataType: "json",
+                async: false,
                 beforeSend:function()
                 {
                     $("#tip").html("<span style='color:blue'>正在添加...</span>");
@@ -93,19 +89,21 @@
                 url: '${pageContext.request.contextPath}/car/testConnect.do',
                 data:{"ip":ip, "port": port},
                 type: "post",
+                dataType: "json",
+                async: false,
                 beforeSend:function()
                 {
-                    // $("#tip").html("<span style='color:blue'>正在添加...</span>");
+                    $("#tip").html("<span style='color:blue'>努力连接中...</span>");
                     return true;
                 },
                 success:function()
                 {
-                    alert("连接成功！");
+                    alert("连接成功");
                     location.reload();
                 },
                 error:function()
                 {
-                    alert('无法连接！');
+                    alert('无法连接');
                 },
                 complete:function()
                 {
@@ -114,12 +112,6 @@
             });
         return false;
     }
-
-    // $(function () { $('#addUserModal').on('hide.bs.modal', function () {
-    //     // 关闭时清空edit状态为add
-    //     location.reload();
-    // })
-    // });
 </script>
 
 <body>
@@ -158,11 +150,11 @@
                 <li><a href="${pageContext.request.contextPath}/place/placeManage">蜂巢管理</a></li>
                 <li><a href="#">其他设置</a></li>
             </ul>
-            <ul class="nav nav-sidebar">
-                <li><a href="${pageContext.request.contextPath}/user/newUser">添加用户</a></li>
-                <li><a href="${pageContext.request.contextPath}/place/newPlace">添加地址</a></li>
-                <li><a href="${pageContext.request.contextPath}/car/newCar">添加小车</a></li>
-            </ul>
+            <%--<ul class="nav nav-sidebar">--%>
+                <%--<li><a href="${pageContext.request.contextPath}/user/newUser">添加用户</a></li>--%>
+                <%--<li><a href="${pageContext.request.contextPath}/place/newPlace">添加地址</a></li>--%>
+                <%--<li><a href="${pageContext.request.contextPath}/car/newCar">添加小车</a></li>--%>
+            <%--</ul>--%>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Dashboard</h1>

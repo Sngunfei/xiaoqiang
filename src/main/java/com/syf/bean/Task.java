@@ -1,9 +1,12 @@
 package com.syf.bean;
 
+import com.syf.Const.Config;
+import com.syf.Const.Status;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Component
 @Entity
@@ -12,82 +15,72 @@ public class Task extends BasePO{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "taskID", unique = true)
+    @Column(name = "id", unique = true, nullable = false)
     private int id;
 
-    @Column(name = "destination", nullable = false)
-    private int destination;
+    @Column(name = "address", nullable = false)
+    private int addressID;
 
-    @Column(name = "userID", nullable = false)
-    private int userID;
+    @Column(name = "user", nullable = false)
+    private String user;
 
-    @Column(name = "carID")
+    @Column(name = "car")
     private int carID;
 
     @Column(name = "startTime", nullable = false)
-    private Date startTime;
+    private Timestamp startTime;
+
+    @Column(name = "deliverTime")
+    private Timestamp deliverTime;
 
     @Column(name = "finishTime")
-    private Date finishTime;
+    private Timestamp finishTime;
 
     @Column(name = "cooperation")
     private String cp;
 
-    /*
-        - status
-            0 : ready: 只是存在数据库里，尚未开始
-            1 : delivering : 已经开始，正在进行中
-            2 : done : 已经正常完成
-            3 : err : 由于种种原因导致任务失败
-            .. etc
-     */
     @Column(name = "status", nullable = false)
-    private int status;
-
-    @Column(name = "deliverTime")
-    private Date deliverTime;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @Column(name = "assign")
     private boolean assign;
+
+    public Task() {
+        this.startTime = new Timestamp(System.currentTimeMillis());
+        this.status = Status.Ready;
+    }
+
+    public Task(int id, int address, String user) {
+        this.startTime = new Timestamp(System.currentTimeMillis());
+        this.status = Status.Ready;
+        this.id = id;
+        this.addressID = address;
+        this.user = user;
+    }
 
     public boolean isAssign(){
         return assign;
     }
 
-    public Task() {
-        this.startTime = new Date(System.currentTimeMillis());
-    }
-
-    public Task(int id, int destination, int userID) {
-        this.id = id;
-        this.destination = destination;
-        this.userID = userID;
-        this.startTime = new Date(System.currentTimeMillis());
-        this.status = 0;
-    }
-
-    public int getId() {
+    public int getID() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getAddressID() {
+        return addressID;
     }
 
-    public int getDestination() {
-        return destination;
+    public void setAddressID(int addressID) {
+        this.addressID = addressID;
     }
 
-    public void setDestination(int destination) {
-        this.destination = destination;
+    public String getUser() {
+        return user;
     }
 
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public int getCarID() {
@@ -98,24 +91,28 @@ public class Task extends BasePO{
         this.carID = carID;
     }
 
-    public Date getStartTime() {
+    public Timestamp getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(Timestamp startTime) {
         this.startTime = startTime;
     }
 
-    public Date getFinishTime() {
+    public Timestamp getDeliverTime() {
+        return deliverTime;
+    }
+
+    public void setDeliverTime(Timestamp deliverTime) {
+        this.deliverTime = deliverTime;
+    }
+
+    public Timestamp getFinishTime() {
         return finishTime;
     }
 
-    public void setFinishTime(Date finishTime) {
+    public void setFinishTime(Timestamp finishTime) {
         this.finishTime = finishTime;
-    }
-
-    public int getStatus() {
-        return status;
     }
 
     public String getCp() {
@@ -126,16 +123,31 @@ public class Task extends BasePO{
         this.cp = cp;
     }
 
-    public void setStatus(int status) {
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
         this.status = status;
     }
 
-    public Date getDeliverTime() {
-        return deliverTime;
+    public void setAssign(boolean assign) {
+        this.assign = assign;
     }
 
-    public void setDeliverTime(Date deliverTime) {
-        this.deliverTime = deliverTime;
+    public boolean isRunning(){
+        return Status.Running.equals(this.status);
     }
 
+    public boolean isReady(){
+        return Status.Ready.equals(this.status);
+    }
+
+    public boolean isDone(){
+        return Status.Done.equals(this.status);
+    }
+
+    public boolean isFail(){
+        return Status.Fail.equals(this.status);
+    }
 }

@@ -1,6 +1,5 @@
 package com.syf.bean;
 
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -8,15 +7,15 @@ import javax.persistence.*;
 @Component
 @Entity
 @Table(name = "place", schema = "xq")
-public class Place extends BasePO {
+public class Address extends BasePO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "desID")
+    @Column(name = "id")
     private int id;
 
-    @Column(name = "description", nullable = false, length = 512)
-    private String description;
+    @Column(name = "address", nullable = false, length = 512)
+    private String address;
 
     @Column(name = "locX", nullable = false, precision = 2)
     private float locX;
@@ -39,20 +38,16 @@ public class Place extends BasePO {
     @Column(name = "angW", nullable = false, precision = 2)
     private float angW;
 
-    public int getDesID() {
-        return this.id;
+    public int getId() {
+        return id;
     }
 
-    public void setCarID(int desID) {
-        this.id = desID;
+    public String getAddress() {
+        return address;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String decription) {
-        this.description = decription;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public float getLocX() {
@@ -77,10 +72,6 @@ public class Place extends BasePO {
 
     public void setLocZ(float locZ) {
         this.locZ = locZ;
-    }
-
-    public void setDesID(int desID) {
-        this.id = desID;
     }
 
     public float getAngX() {
@@ -115,7 +106,7 @@ public class Place extends BasePO {
         this.angW = angW;
     }
 
-    public String getLoc(){
-        return String.format("%f,%f,%f,%f,%f,%f,%f",locX,locY,locZ,angX,angY,angZ,angW);
+    public String getLocationInfo(){
+        return String.format("%f,%f,%f,%f,%f,%f,%f", locX, locY, locZ, angX, angY, angZ, angW);
     }
 }

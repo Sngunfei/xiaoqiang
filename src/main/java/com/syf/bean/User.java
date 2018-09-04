@@ -10,38 +10,23 @@ import javax.persistence.*;
 @Table(name = "user", schema = "xq")
 public class User extends BasePO{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
-
     @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "nickname", length = 256)
     private String nickname;
 
+    @Id
     @Column(name = "account", nullable = false, unique = true)
     private String account;
 
     @Column(name = "ip")
     private String ip;
 
-    @Column(name = "port")
-    private int port;
-
     @Column(name = "email", length = 256)
     private String email;
 
     public User() {}
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getPassword() {
         return password;
@@ -73,14 +58,6 @@ public class User extends BasePO{
 
     public void setIp(String ip) {
         this.ip = ip;
-    }
-
-    public int getPort() {
-        return port;
-    }
-
-    public void setPort(int port) {
-        this.port = port;
     }
 
     public String getEmail() {

@@ -1,8 +1,11 @@
 package com.syf.control;
 
+import com.syf.Const.Status;
 import com.syf.bean.Car;
 import com.syf.bean.Task;
+import com.syf.biz.logger;
 import com.syf.service.CarService;
+import com.syf.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,88 +20,76 @@ import java.io.*;
 import java.net.Socket;
 import java.util.List;
 
-
 @Controller
 @RequestMapping(value = "/car")
 public class CarController {
 
     private CarService carService;
+    private TaskService taskService;
 
     @Autowired
-    public CarController(CarService service){
-        this.carService = service;
+    public CarController(CarService service1, TaskService service2){
+        this.carService = service1;
+        this.taskService = service2;
     }
 
-    @RequestMapping(value = "/newCar", method = RequestMethod.GET)
-    public String newCar(){
-        return "newCar";
-    }
-
-    @RequestMapping(value = "/addCar.do", method = RequestMethod.POST)
-    public void addCarDo(HttpServletRequest request, HttpServletResponse response){
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!");
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public void add(HttpServletRequest request, HttpServletResponse response){
         String ip = request.getParameter("ip");
-        System.out.println(ip);
-        int port = Integer.valueOf(request.getParameter("port"));
-        System.out.println(port);
-        if(carService.isExist(ip))
+        String port = request.getParameter("port");
+        String inetAddress = String.format("%s:%s", ip, port);
+        if(carService.isExist(inetAddress))
             return ;
-        try{
-            float x = Float.valueOf(request.getParameter("x"));
-            float y = Float.valueOf(request.getParameter("y"));
-            float z = Float.valueOf(request.getParameter("z"));
-            float ax = Float.valueOf(request.getParameter("ax"));
-            float ay = Float.valueOf(request.getParameter("ay"));
-            float az = Float.valueOf(request.getParameter("az"));
-            float aw = Float.valueOf(request.getParameter("aw"));
-            String model = request.getParameter("model");
-            Car car = new Car(ip, port);
-            car.setLocation(x, y, z);
-            car.setPose(ax, ay, az, aw);
-            car.setModel(model);
-            carService.save(car);
-            System.out.println(car.toString());
-            response.getWriter().print("{\"success\":true}");
-            response.getWriter().flush();
-            response.getWriter().close();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+
+        float x = Float.valueOf(request.getParameter("x"));
+        float y = Float.valueOf(request.getParameter("y"));
+        float z = Float.valueOf(request.getParameter("z"));
+        float ax = Float.valueOf(request.getParameter("ax"));
+        float ay = Float.valueOf(request.getParameter("ay"));
+        float az = Float.valueOf(request.getParameter("az"));
+        float aw = Float.valueOf(request.getParameter("aw"));
+        String model = request.getParameter("model");
+        Car car = new Car(inetAddress);
+        car.setLocation(x, y, z);
+        car.setPose(ax, ay, az, aw);
+        car.setModel(model);
+        carService.save(car);
+
     }
 
-    @RequestMapping(value = "/carManage", method = RequestMethod.GET)
-    public ModelAndView carManager(){
+    @RequestMapping(value = "/manage", method = RequestMethod.GET)
+    public ModelAndView manage(){
         ModelAndView mav = new ModelAndView("carManage");
         mav.addObject("cars", carService.getAllCar());
-        mav.addObject("carInfo", carService.getCarInfo());
+        mav.addObject("statistics", carService.getCarStatistics());
         return mav;
     }
 
-    @RequestMapping(value = "/testConnect.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/testConnect", method = RequestMethod.POST)
     public void testConnect(@RequestParam("ip") String ip, @RequestParam("port") int port,
                             HttpServletResponse response){
-        // 测试与小车的连接
         try {
             Socket socket = new Socket(ip, port);
-            PrintWriter pw = new PrintWriter(new BufferedOutputStream(socket.getOutputStream()));
-            pw.println("connect");
+            logger.info(String.format("connect to the car successfully, %s:%d. /n", ip, port));
             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
+            PrintWriter pw = new PrintWriter(new BufferedOutputStream(socket.getOutputStream()));
             socket.setSoTimeout(5000); // 五秒后超时
-            boolean timeout = true;
             try {
+                pw.println("200");
                 String ack = br.readLine();
-                timeout = false;
+                if("200".equals(ack))
+                    response.getWriter().print("{\"success\":true}");
             }catch (InterruptedIOException e){
-                timeout = true;
-            }
-
-            if(!timeout){
+                logger.debug("Test connect failed: ack timeout.");
                 response.getWriter().print("{\"success\":true}");
-                response.getWriter().flush();
-                response.getWriter().close();
             }
+            response.getWriter().flush();
+            response.getWriter().close();
+            br.close();
+            pw.close();
+            socket.close();
         }catch (IOException e){
+            logger.debug("Test connect failed: can't connect to socket. ");
             e.printStackTrace();
         }
     }
@@ -106,32 +97,24 @@ public class CarController {
     @RequestMapping(value = "/carInfo-{id}", method = RequestMethod.GET)
     public ModelAndView showCar(@PathVariable("id") int carId){
         ModelAndView mav = new ModelAndView("carInfo");
-        Car car = carService.getCarById(carId);
+        Car car = carService.getCar(carId);
+        if(car.isRunning()){
+            Task task = taskService.getTask(car.getCurTask());
+            mav.addObject("task", task);
+        }
         mav.addObject("car", car);
-        // 如果状态为1(delivering), 那么就把该任务信息也展示出来
-        if(car.getStatus() == 1){
-            // ToDO: car信息里没有保存taskid, task里才有carid, 在不重构数据库的情况下，需要从task表里找，效率较低
-        }
-
-        String status = "default";
-        switch (car.getStatus()){
-            case 0: status = "已就绪";break;
-            case 1: status = "正在配送"; break;
-            case 2: status = "正在返程"; break;
-            case 3: status = "故障ing"; break;
-        }
-        mav.addObject("status", status);
+        mav.addObject("status", car.getStatus().content);
         return mav;
     }
 
-    @RequestMapping(value = "/carClass{status}", method = RequestMethod.GET)
-    public ModelAndView showCarByStatus(@PathVariable int status){
-        ModelAndView mav = new ModelAndView("showCarByStatus");
+    @RequestMapping(value = "/car-{status}", method = RequestMethod.GET)
+    public ModelAndView showCarByStatus(@PathVariable String status){
+        ModelAndView mav = new ModelAndView("classifyCars");
         List<Car> cars;
-        if(status == 2)
+        if("all".equals(status))
             cars = carService.getAllCar();
         else
-            cars = carService.getCarByStatus(status);
+            cars = carService.classifyCarsByStatus(status);
         mav.addObject("cars", cars);
         mav.addObject("status", status);
         return mav;

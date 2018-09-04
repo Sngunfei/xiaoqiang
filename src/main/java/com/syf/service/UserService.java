@@ -10,40 +10,33 @@ import java.util.List;
 @Service
 public class UserService {
 
-    UserDao dao;
+    UserDao userDao;
 
     @Autowired
     public UserService(UserDao dao){
-        this.dao = dao;
+        userDao = dao;
     }
 
-    public UserDao getDao() {
-        return dao;
+    public UserDao getUserDao() {
+        return userDao;
     }
 
     public boolean isExist(String account){
-        User user = dao.getUserByAccount(account);
+        User user = userDao.get(account);
         return user != null;
     }
 
     public User getUserByAccount(String account){
-        return dao.getUserByAccount(account);
+        return userDao.get(account);
     }
 
     public void save(User user){
-        dao.save(user);
+        userDao.save(user);
     }
 
-    public User getUserById(int id){
-        return dao.getUserById(id);
-    }
-
-    public String getAccountById(int id){
-        return dao.getUserById(id).getAccount();
-    }
 
     public List<User> getAllAccounts(){
-        return dao.getAllAccounts();
+        return userDao.getAllAccounts();
     }
 
 }
